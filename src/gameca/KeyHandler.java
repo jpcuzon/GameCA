@@ -25,33 +25,26 @@ public class KeyHandler implements KeyListener{
     public void keyPressed(KeyEvent e) {
         
         int code = e.getExtendedKeyCode();
-        //wasd keys
-        if(code == KeyEvent.VK_W){
+        
+        if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
             upPressed = true;
-        }
-        if(code == KeyEvent.VK_S){
-            downPressed = true;
-        }
-        if(code == KeyEvent.VK_A){
-            leftPressed = true;
+            
         }
         
-        if(code == KeyEvent.VK_D){
-            rightPressed = true;
-        }
-    //arrow keys
-        if(code == KeyEvent.VK_UP){
-            upPressed = true;
-        }
-        if(code == KeyEvent.VK_DOWN){
+        if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
             downPressed = true;
+            
         }
-        if(code == KeyEvent.VK_LEFT){
+        
+        if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
             leftPressed = true;
+            
         }
-        if(code == KeyEvent.VK_RIGHT){
+        
+        if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
             rightPressed = true;
         }
+    
     }
 
     @Override
@@ -59,30 +52,22 @@ public class KeyHandler implements KeyListener{
         
         int code = e.getExtendedKeyCode();
         
-        if(code == KeyEvent.VK_W){
+        if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
             upPressed = false;
-        }
-        if(code == KeyEvent.VK_S){
-            downPressed = false;
-        }
-        if(code == KeyEvent.VK_A){
-            leftPressed = false;
-        }
-        if(code == KeyEvent.VK_D){
-            rightPressed = false;
+            
         }
         
-        //arrow keys
-         if(code == KeyEvent.VK_UP){
-            upPressed = false;
-        }
-        if(code == KeyEvent.VK_DOWN){
+        if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
             downPressed = false;
+            
         }
-        if(code == KeyEvent.VK_LEFT){
+        
+        if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
             leftPressed = false;
+            
         }
-        if(code == KeyEvent.VK_RIGHT){
+        
+        if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
             rightPressed = false;
         }
     

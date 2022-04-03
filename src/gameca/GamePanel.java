@@ -4,6 +4,7 @@
  */
 package gameca;
 
+//import entity.MiscCandle;
 import entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,10 +27,17 @@ public class GamePanel extends JPanel implements Runnable{
     final int scale = 6;
     
     public final int tileSize = originalTileSize * scale; //48x48
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 12;//= (maxScreenCol * 9)/16;
-    final int screenWidth = tileSize * maxScreenCol;  //768 pixels
-    final int screenHeight = tileSize * maxScreenRow; //576 pixels
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = (maxScreenCol * 9)/16;
+    public final int screenWidth = tileSize * maxScreenCol;  //1536 pixels
+    public final int screenHeight = tileSize * maxScreenRow; //864 pixels
+    
+    //World Settings
+    public final int maxWorldCol = 96;  //number of columns in the map tile
+    public final int maxWorldRow = 9;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize* maxWorldRow;
+    
     
     //FPS
     int FPS = 60;
@@ -38,7 +46,8 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager tileManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
-    Player player = new Player(this, keyHandler);
+    public Player player = new Player(this, keyHandler);
+//    MiscCandle candle = new MiscCandle(this);
     
     
     
@@ -47,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable{
     public GamePanel(){
         
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.black);
+        this.setBackground(Color.CYAN);
         this.setDoubleBuffered(true); //all drawing from this component will be done in an offscreen painting buffer; increases render performance
         this.addKeyListener(keyHandler);
         this.setFocusable(true); //frame can be focused to input
@@ -162,7 +171,19 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void update(){
         
+//        candle.update();
          player.update();
+    }
+    
+    //sets the bound limits of the object based on the screen size
+    public static int clamp(int var, int min, int max){
+        
+        if(var >= max){
+            return var = max;
+        }else if(var <= min){
+            return var = min;
+        }else{return var;}
+        
     }
     
     public void paintComponent(Graphics g){
@@ -172,10 +193,16 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         
         tileManager.draw(g2);
+//        candle.draw(g2, tileSize*2,tileSize*5);
+//        candle.draw(g2, tileSize*6,tileSize*5);
+//        candle.draw(g2, tileSize*10,tileSize*5);
+//        candle.draw(g2, tileSize*14,tileSize*5);
         player.draw(g2);
         
         g2.dispose(); //release any resources that this is using
         
     }
+    
+    
     
 }

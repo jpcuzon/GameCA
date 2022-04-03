@@ -21,9 +21,17 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyHandler;
     
+    
+    public final int screenX;
+    public final int screenY;
+    
     public Player(GamePanel gp, KeyHandler keyHandler){
         this.gp = gp;
         this.keyHandler = keyHandler;
+        
+        screenX = gp.tileSize;
+        screenY = gp.tileSize*7;
+        y = gp.tileSize*7;
         
         setDefaultValues();
         getPlayerImage();
@@ -32,9 +40,9 @@ public class Player extends Entity{
     
     public void setDefaultValues(){
         
-        x = 100;
-        y = 100;
-        speed = 4;
+        worldX = gp.tileSize;
+        worldY = gp.tileSize*7;
+        speed = 7;
         direction = "down";
         
     }
@@ -73,12 +81,16 @@ public class Player extends Entity{
                 y += speed;
             }else if(keyHandler.leftPressed == true){
                 direction = "left";
-                x -= speed;
+                worldX -= speed;
             }else if(keyHandler.rightPressed == true){
                 direction = "right";
-                x += speed;
+                worldX += speed;
             }
 
+//            worldX = gp.clamp(worldX, 0, gp.screenWidth - (gp.tileSize*2));
+            worldX = gp.clamp(worldX, gp.tileSize, gp.worldWidth);
+            y = gp.clamp(y, gp.screenHeight - (gp.tileSize*3), gp.screenHeight - (gp.tileSize*2));
+            
             spriteCounter++;
             if(spriteCounter > 15){
                 if(spriteNum == 1){
@@ -98,8 +110,6 @@ public class Player extends Entity{
     
     public void draw(Graphics2D g2){
         
-//        g2.setColor(Color.white);
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
         BufferedImage image = null;
         
@@ -139,7 +149,7 @@ public class Player extends Entity{
             
             
         }
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, y, gp.tileSize *2 , gp.tileSize * 2, null);
         
         
         
