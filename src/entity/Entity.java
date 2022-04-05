@@ -1,9 +1,10 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entity;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -21,5 +22,6 @@ public class Entity {
     
     public int spriteCounter = 0;
     public int spriteNum = 1;
-    
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 }

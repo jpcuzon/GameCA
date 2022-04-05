@@ -8,6 +8,7 @@ import gameca.GamePanel;
 import gameca.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -32,6 +33,8 @@ public class Player extends Entity{
         screenX = gp.tileSize;
         screenY = gp.tileSize*7;
         y = gp.tileSize*7;
+        
+        solidArea = new Rectangle(8,16,gp.tileSize/2,gp.tileSize/2);
         
         setDefaultValues();
         getPlayerImage();
@@ -75,18 +78,38 @@ public class Player extends Entity{
             
             if(keyHandler.upPressed == true){
                 direction = "up";
-                y -= speed;
             }else if(keyHandler.downPressed == true){
                 direction = "down";
-                y += speed;
             }else if(keyHandler.leftPressed == true){
                 direction = "left";
-                worldX -= speed;
             }else if(keyHandler.rightPressed == true){
                 direction = "right";
-                worldX += speed;
             }
-
+            
+            //this checks if there is tile collision and if it happpens the player cannot move in that direction
+            collisionOn = false;
+            gp.cCheck.checkTile(this);
+            
+            if(collisionOn == false){
+                
+                switch(direction){
+                    case"up":
+                        y += speed;
+                        break;
+                    case"down":
+                        y += speed;
+                        break;
+                    case"left":
+                        worldX -= speed;
+                        break;
+                    case"right":
+                        worldX += speed;
+                        break;
+                        
+                }
+            }
+            
+            
 //            worldX = gp.clamp(worldX, 0, gp.screenWidth - (gp.tileSize*2));
             worldX = gp.clamp(worldX, gp.tileSize, gp.worldWidth);
             y = gp.clamp(y, gp.screenHeight - (gp.tileSize*3), gp.screenHeight - (gp.tileSize*2));
