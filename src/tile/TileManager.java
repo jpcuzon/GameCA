@@ -18,10 +18,10 @@ import javax.imageio.ImageIO;
  */
 public class TileManager {
     
-    GamePanel gp;
-    Tile[] tile;
-    Tile[] miscTile;
-    int mapTileNum[][];
+    private GamePanel gp;
+    private Tile[] tile;
+    private Tile[] miscTile;
+    private int mapTileNum[][];
     
     
     public TileManager(GamePanel gp){
@@ -33,7 +33,7 @@ public class TileManager {
         
         getTileImage();
         loadMap("/maps/Map_Castle_01.txt"); //puts the location of file in the method call instead of hardcoding it inside the method for easy map access
-        
+     
     }
     
     public void getTileImage(){
@@ -41,6 +41,8 @@ public class TileManager {
         try{
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_0.png"));
+            //sets the tiles in which the player should not step
+            tile[0].collision = true;
             
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Floor_1.png"));
@@ -50,24 +52,30 @@ public class TileManager {
             
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Window_2.png"));
+            tile[3].collision = true;
             
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Roof.png"));
+            tile[4].collision = true;
             
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_1.png"));
+            tile[5].collision = true;
             
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_2.png"));
+            tile[6].collision = true;
             
             tile[7] = new Tile();
             tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_3.png"));
+            tile[7].collision = true;
             
             tile[8] = new Tile();
             tile[8].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_4.png"));
+            tile[8].collision = true;
             
             
-//            miscTile[0] = new Tile(); //for a null tile
+//            miscT5le[0] = new Tile(); //for a null tile
 //            miscTile[0].image = ImageIO.read(getClass().getResourceAsStream("/misc/Misc_Null.png"));
 //            
 //            miscTile[1] = new Tile();
@@ -161,6 +169,40 @@ public class TileManager {
         
         
     }
+
+    public GamePanel getGp() {
+        return gp;
+    }
+
+    public void setGp(GamePanel gp) {
+        this.gp = gp;
+    }
+
+    public Tile[] getTile() {
+        return tile;
+    }
+
+    public void setTile(Tile[] tile) {
+        this.tile = tile;
+    }
+
+    public Tile[] getMiscTile() {
+        return miscTile;
+    }
+
+    public void setMiscTile(Tile[] miscTile) {
+        this.miscTile = miscTile;
+    }
+
+    public int[][] getMapTileNum() {
+        return mapTileNum;
+    }
+
+    public void setMapTileNum(int[][] mapTileNum) {
+        this.mapTileNum = mapTileNum;
+    }
+    
+    
     
     
 }
