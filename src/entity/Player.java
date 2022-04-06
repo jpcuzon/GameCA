@@ -29,10 +29,14 @@ public class Player extends Entity{
     public Player(GamePanel gp, KeyHandler keyHandler){
         this.gp = gp;
         this.keyHandler = keyHandler;
+       //indicates where the player is drawn on the screen 
+        //screenX = gp.tileSize;
+//        screenY = gp.tileSize*7;
+        screenX = gp.screenWidth/2 - (gp.tileSize/2);
+        screenY = gp.screenHeight/2 - (gp.tileSize/2);
         
-        screenX = gp.tileSize;
-        screenY = gp.tileSize*7;
-        y = gp.tileSize*7;
+        worldX = gp.tileSize;
+        worldY = gp.tileSize*7;
         
         solidArea = new Rectangle(8,16,gp.tileSize/2,gp.tileSize/2);
         
@@ -43,9 +47,9 @@ public class Player extends Entity{
     
     public void setDefaultValues(){
         
-        worldX = gp.tileSize;
-        worldY = gp.tileSize*7;
-        speed = 7;
+        worldX = gp.tileSize*23;
+        worldY = gp.tileSize*23;
+        speed = 8;
         direction = "down";
         
     }
@@ -94,10 +98,10 @@ public class Player extends Entity{
                 
                 switch(direction){
                     case"up":
-                        y += speed;
+                        worldY -= speed;
                         break;
                     case"down":
-                        y += speed;
+                        worldY += speed;
                         break;
                     case"left":
                         worldX -= speed;
@@ -109,10 +113,13 @@ public class Player extends Entity{
                 }
             }
             
-            
+           //Clamp
+           
 //            worldX = gp.clamp(worldX, 0, gp.screenWidth - (gp.tileSize*2));
-            worldX = gp.clamp(worldX, gp.tileSize, gp.worldWidth);
-            y = gp.clamp(y, gp.screenHeight - (gp.tileSize*3), gp.screenHeight - (gp.tileSize*2));
+           // worldX = gp.clamp(worldX, gp.tileSize, gp.worldWidth);
+//            y = gp.clamp(y, gp.screenHeight - (gp.tileSize*3), gp.screenHeight - (gp.tileSize*2));
+           // worldY = gp.clamp(worldY, gp.screenHeight - (gp.tileSize*3), gp.screenHeight - (gp.tileSize*2));
+
             
             spriteCounter++;
             if(spriteCounter > 15){
@@ -172,7 +179,7 @@ public class Player extends Entity{
             
             
         }
-        g2.drawImage(image, screenX, y, gp.tileSize *2 , gp.tileSize * 2, null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize *2 , gp.tileSize * 2, null);
         
         
         

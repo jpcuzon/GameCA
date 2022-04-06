@@ -41,15 +41,19 @@ public class CollisionCheck {
                 
                 if(gp.tileManager.getTile()[tileNum1].collision == true || gp.tileManager.getTile()[tileNum2].collision == true){
                     entity.collisionOn = true;
+                    System.out.println("collision up detected");
                 }
                 break;
             case"down":
-                entityBottomRow = (entityBottomWorldY - entity.speed)/gp.tileSize;
+                //the tile size*2 is added to stop the player before it hits the object as the coordinates are for the top left of the player tile
+                entityBottomRow = (entityBottomWorldY + (gp.tileSize*3/2)- entity.speed)/gp.tileSize;
                 tileNum1 = gp.tileManager.getMapTileNum()[entityLeftCol][entityBottomRow];
                 tileNum2 = gp.tileManager.getMapTileNum()[entityRightCol][entityBottomRow];
                 
                 if(gp.tileManager.getTile()[tileNum1].collision == true || gp.tileManager.getTile()[tileNum2].collision == true){
                     entity.collisionOn = true;
+                            System.out.println("collision down detected");
+                    
                 }
                 break;
             case"left":
@@ -59,15 +63,18 @@ public class CollisionCheck {
                 
                 if(gp.tileManager.getTile()[tileNum1].collision == true || gp.tileManager.getTile()[tileNum2].collision == true){
                     entity.collisionOn = true;
+                    System.out.println("collision left detected");
                 }
                 break;
             case"right":
-                entityRightCol = (entityRightWorldX - entity.speed)/gp.tileSize;
+                //the tile size*3/2 is added to stop the player before it hits the object as the coordinates are for the top left of the player tile
+                entityRightCol = (entityRightWorldX + (gp.tileSize*3/2) - entity.speed)/gp.tileSize;
                 tileNum1 = gp.tileManager.getMapTileNum()[entityRightCol][entityTopRow];
                 tileNum2 = gp.tileManager.getMapTileNum()[entityRightCol][entityBottomRow];
                 
                 if(gp.tileManager.getTile()[tileNum1].collision == true || gp.tileManager.getTile()[tileNum2].collision == true){
                     entity.collisionOn = true;
+                    System.out.println("collision right detected");
                 }
                 break;
         }
