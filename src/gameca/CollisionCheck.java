@@ -45,8 +45,8 @@ public class CollisionCheck {
                 }
                 break;
             case"down":
-                //the tile size*2 is added to stop the player before it hits the object as the coordinates are for the top left of the player tile
-                entityBottomRow = (entityBottomWorldY + (gp.tileSize*3/2)- entity.speed)/gp.tileSize;
+                //the tile size/2 is added to stop the player before it hits the object as the coordinates are for the top left of the player tile
+                entityBottomRow = (entityBottomWorldY + (gp.tileSize/2)- entity.speed)/gp.tileSize;
                 tileNum1 = gp.tileManager.getMapTileNum()[entityLeftCol][entityBottomRow];
                 tileNum2 = gp.tileManager.getMapTileNum()[entityRightCol][entityBottomRow];
                 
@@ -67,8 +67,8 @@ public class CollisionCheck {
                 }
                 break;
             case"right":
-                //the tile size*3/2 is added to stop the player before it hits the object as the coordinates are for the top left of the player tile
-                entityRightCol = (entityRightWorldX + (gp.tileSize*3/2) - entity.speed)/gp.tileSize;
+                //the tile size is added to stop the player before it hits the object as the coordinates are for the top left of the player tile
+                entityRightCol = (entityRightWorldX + (gp.tileSize/2)- entity.speed)/gp.tileSize;
                 tileNum1 = gp.tileManager.getMapTileNum()[entityRightCol][entityTopRow];
                 tileNum2 = gp.tileManager.getMapTileNum()[entityRightCol][entityBottomRow];
                 

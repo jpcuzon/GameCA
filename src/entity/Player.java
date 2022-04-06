@@ -47,8 +47,8 @@ public class Player extends Entity{
     
     public void setDefaultValues(){
         
-        worldX = gp.tileSize*23;
-        worldY = gp.tileSize*23;
+        worldX = gp.tileSize*8;
+        worldY = gp.tileSize*9/2;
         speed = 8;
         direction = "down";
         
@@ -179,7 +179,7 @@ public class Player extends Entity{
             
             
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize *2 , gp.tileSize * 2, null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize  , gp.tileSize , null);
         
         
         
