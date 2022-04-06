@@ -31,7 +31,7 @@ public class CollisionCheck {
         int entityBottomRow = entityBottomWorldY/gp.tileSize;
         
         int tileNum1, tileNum2;
-        
+        // it basically checks is any of the sides has collided to an object and changes the boolean collisionON to true
         switch(entity.direction){
         
             case"up":

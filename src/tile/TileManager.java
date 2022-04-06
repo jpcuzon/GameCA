@@ -42,7 +42,7 @@ public class TileManager {
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_0.png"));
             //sets the tiles in which the player should not step
-            tile[0].collision = true;
+            //tile[0].collision = true;
             
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Floor_1.png"));
@@ -52,7 +52,7 @@ public class TileManager {
             
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Window_2.png"));
-            tile[3].collision = true;
+//            tile[3].collision = true;
             
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Roof.png"));
@@ -60,19 +60,19 @@ public class TileManager {
             
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_1.png"));
-            tile[5].collision = true;
+//            tile[5].collision = true;
             
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_2.png"));
-            tile[6].collision = true;
+//            tile[6].collision = true;
             
             tile[7] = new Tile();
             tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_3.png"));
-            tile[7].collision = true;
+//            tile[7].collision = true;
             
             tile[8] = new Tile();
             tile[8].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall_4.png"));
-            tile[8].collision = true;
+//            tile[8].collision = true;
             
             
 //            miscT5le[0] = new Tile(); //for a null tile
@@ -149,7 +149,7 @@ public class TileManager {
             
             //For performance efficiency; Only draw the map that is on the screen instead of drawing the whole map
             if(worldX > (gp.player.worldX)- (gp.player.screenX * 2) && worldX < (gp.player.worldX) + (gp.player.screenX* 15) ){
-//                    && worldY > gp.player.worldY - gp.player.screenY && worldY < gp.player.worldY + gp.player.screenY){  since the castle is side-scrolling, we don'y need camera for Y for now
+////                    && worldY > gp.player.worldY - gp.player.screenY && worldY < gp.player.worldY + gp.player.screenY){  since the castle is side-scrolling, we don'y need camera for Y for now
                 
                 g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             }
