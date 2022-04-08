@@ -49,7 +49,7 @@ public class Player extends Entity{
         
         worldX = gp.tileSize*8;
         worldY = gp.tileSize*9/2;
-        speed = 8;
+        speed = 5;
         direction = "down";
         
     }
@@ -79,6 +79,10 @@ public class Player extends Entity{
 
       
     public void update(){
+        
+        if(keyHandler.spacePressed == true){
+            speed = 8;
+        }else{speed = 5;}
         
         if(keyHandler.upPressed == true || keyHandler.downPressed == true  //only animates the sprite when a key is pressed
                 || keyHandler.leftPressed == true || keyHandler.rightPressed == true){
@@ -209,7 +213,7 @@ public class Player extends Entity{
                         image = left3;
                         break;
                 }
-            }else{image = up1;}
+                }else{image = left1;}
                 break;
             case "right":
                 if(keyHandler.rightPressed == true){ //check if the keys are pressed and sets the image to a default pose if unpressed.
