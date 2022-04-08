@@ -47,8 +47,9 @@ public class KeyHandler implements KeyListener{
             rightPressed = true;
         }
         
-        if(code == KeyEvent.VK_SPACE){
+        if(code == KeyEvent.VK_SHIFT){
             shiftPressed = true;
+            System.out.println("Shift");
         }
         
     
@@ -79,7 +80,7 @@ public class KeyHandler implements KeyListener{
         }
     
         if(code == KeyEvent.VK_SHIFT){
-            spacePressed = false;
+            shiftPressed = false;
         }
         
         
