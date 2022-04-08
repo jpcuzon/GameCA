@@ -79,8 +79,8 @@ public class Player extends Entity{
 
       
     public void update(){
-        
-        if(keyHandler.spacePressed == true){
+        //The player runs/moves faster when space is pressed
+        if(keyHandler.shiftPressed == true){
             speed = 8;
         }else{speed = 5;}
         
@@ -149,6 +149,8 @@ public class Player extends Entity{
             }
             
         }
+        
+        
         
         
        
