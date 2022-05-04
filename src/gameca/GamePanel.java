@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -5,13 +6,13 @@
 package gameca;
 
 //import entity.MiscCandle;
+import Object.Castle;
+import Object.Object;
 import entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import tile.TileManager;
 
@@ -54,6 +55,8 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     public CollisionCheck cCheck = new CollisionCheck(this);
     public Player player = new Player(this, keyHandler);
+    //array to store as many as 10 objects to be shown at a time
+    public Object object[]= new Object[10] ; 
 //    MiscCandle candle = new MiscCandle(this);
     
     
@@ -76,6 +79,11 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread = new Thread(this);
         gameThread.start();
         
+    }
+    
+    public void setGame(){
+    
+        setObject();
     }
     
     
@@ -198,15 +206,35 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g;
-        
+       //draws tile 
         tileManager.draw(g2);
 //        candle.draw(g2, tileSize*2,tileSize*5);
 //        candle.draw(g2, tileSize*6,tileSize*5);
 //        candle.draw(g2, tileSize*10,tileSize*5);
 //        candle.draw(g2, tileSize*14,tileSize*5);
+
+        //draws object
+        for(int i = 0; i <object.length; i ++){
+        //checks if the array is not empty before drawing
+            if (object[i] != null){
+                //draws the object
+                object[i].Draw(this, g2);
+            }
+        }
+        
+        //draws player
         player.draw(g2);
         
         g2.dispose(); //release any resources that this is using
+        
+    }
+    
+    public void setObject(){
+        
+        //castle
+        object[0] = new Castle();
+        object[0].worldX = (13/2) * tileSize;
+        object[0].worldY = 3 * tileSize;
         
     }
     

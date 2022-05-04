@@ -46,10 +46,10 @@ public class Player extends Entity{
     }
     
     public void setDefaultValues(){
-        
+        //where the player is drawn on the screen when the game starts
         worldX = gp.tileSize*8;
-        worldY = gp.tileSize*9/2;
-        speed = 5;
+        worldY = gp.tileSize*8;
+        speed = 6;
         direction = "down";
         
     }
