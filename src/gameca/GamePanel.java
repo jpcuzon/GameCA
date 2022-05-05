@@ -54,10 +54,11 @@ public class GamePanel extends JPanel implements Runnable{
     KeyHandler keyHandler = new KeyHandler();
     Thread gameThread;
     public CollisionCheck cCheck = new CollisionCheck(this);
+    public AssetManager aManager = new AssetManager(this);
+    
     public Player player = new Player(this, keyHandler);
     //array to store as many as 10 objects to be shown at a time
     public Object object[]= new Object[10] ; 
-//    MiscCandle candle = new MiscCandle(this);
     
     
     
@@ -73,6 +74,8 @@ public class GamePanel extends JPanel implements Runnable{
         
         
     }
+    
+    
 
     public void startGameThread(){
         
@@ -83,7 +86,8 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void setGame(){
     
-        setObject();
+//        setObject();
+        aManager.setObj();
     }
     
     
@@ -222,6 +226,8 @@ public class GamePanel extends JPanel implements Runnable{
             }
         }
         
+        
+        
         //draws player
         player.draw(g2);
         
@@ -229,14 +235,15 @@ public class GamePanel extends JPanel implements Runnable{
         
     }
     
-    public void setObject(){
-        
-        //castle
-        object[0] = new Castle();
-        object[0].worldX = (13/2) * tileSize;
-        object[0].worldY = 3 * tileSize;
-        
-    }
+    //I moved them to the assetmanager
+//    public void setObject(){
+//        
+//        //castle
+//        object[0] = new Castle();
+//        object[0].worldX = (13/2) * tileSize;
+//        object[0].worldY = 3 * tileSize;
+//        
+//    }
     
     
     

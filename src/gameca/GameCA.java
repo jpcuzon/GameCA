@@ -29,7 +29,9 @@ public class GameCA {
         
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        gamePanel.setObject();
+        
+//        gamePanel.setObject();
+        gamePanel.setGame();
         gamePanel.startGameThread();
     
     }
