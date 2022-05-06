@@ -24,7 +24,7 @@ public class ObjGate extends Object{
             e.printStackTrace();
         }
         
-        
+//        collision = true;
         
         
     }
@@ -36,6 +36,7 @@ public class ObjGate extends Object{
             screenX = worldX - gp.player.worldX + gp.player.screenX;
             screenY = worldY - gp.player.worldY + gp.player.screenY;
             size = gp.tileSize;
+            
          
             //draws to the map
                 

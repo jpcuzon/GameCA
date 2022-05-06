@@ -7,6 +7,7 @@ package Object;
 
 import gameca.GamePanel;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -19,6 +20,10 @@ public class Object {
     public String name;
     public boolean collision = false;
     public int worldX, worldY,screenX,screenY,size;
+    
+    public Rectangle solidArea = new Rectangle(0,0,80,80);
+    public int solidAreaDefX = solidArea.x;
+    public int solidAreaDefY = solidArea.y;
     
     public void Draw(GamePanel gp, Graphics2D g2){
     

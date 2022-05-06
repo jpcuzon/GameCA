@@ -25,7 +25,7 @@ public class ObjChest extends Object{
         }
         
         
-        
+        collision = true;
         
     }
     

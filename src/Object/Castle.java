@@ -24,8 +24,11 @@ public class Castle extends Object {
         
             image = ImageIO.read(getClass().getResourceAsStream("/objects/Castle.png"));
         }catch(IOException e){
-        e.printStackTrace();}
+            e.printStackTrace();
+        }
         
+        
+        collision = true;
     }
 
     @Override
@@ -35,6 +38,8 @@ public class Castle extends Object {
             screenX = worldX - gp.player.worldX + gp.player.screenX;
             screenY = worldY - gp.player.worldY + gp.player.screenY;
             size = gp.tileSize *5;
+            solidArea.x = solidArea.x *5;
+            solidArea.y = solidArea.y *5;
          
             //draws to the map
                 

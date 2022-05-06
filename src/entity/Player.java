@@ -40,6 +40,8 @@ public class Player extends Entity{
         
         solidArea = new Rectangle(8,16,gp.tileSize/2,gp.tileSize/2);
         
+        solidAreaDefX = solidArea.x;
+        solidAreaDefY = solidArea.y;
         setDefaultValues();
         getPlayerImage();
         
@@ -48,7 +50,7 @@ public class Player extends Entity{
     public void setDefaultValues(){
         //where the player is drawn on the screen when the game starts
         worldX = gp.tileSize*8;
-        worldY = gp.tileSize*8;
+        worldY = gp.tileSize*11;
         speed = 6;
         direction = "down";
         
@@ -101,6 +103,10 @@ public class Player extends Entity{
             //this checks if there is tile collision and if it happpens the player cannot move in that direction
             collisionOn = false;
             gp.cCheck.checkTile(this);
+            
+            //this checks if there is an object collision and prevents the player to walk through it
+            int objectIndex = gp.cCheck.checkObject(this, true);
+            openGate(objectIndex);
             
             if(collisionOn == false){
                 
@@ -155,6 +161,29 @@ public class Player extends Entity{
         
        
     }
+    
+    
+    public void openGate(int i){
+        
+        if(i!=999){  //999 is just a default value we put to determine that no object is touched
+            
+            if(i==2){
+                //changes the image of the gate to an opened state
+
+                try{
+                    gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Gate_Opened.png"));
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+            
+            
+            
+            
+        }
+        
+    }
+    
     
     public void draw(Graphics2D g2){
         
