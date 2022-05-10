@@ -13,20 +13,21 @@ import javax.imageio.ImageIO;
  *
  * @author gmcoa
  */
-public class ObjGate extends Object{
+public class ObjVillageHouse extends Object{
     
-    public ObjGate(){
+    public ObjVillageHouse() {
         
-        name = "Gate";
+        name = "Village_House";
+        
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Gate_Closed.png"));
+        
+            image = ImageIO.read(getClass().getResourceAsStream("/objects/house1.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
         
+        
         collision = true;
-        
-        
     }
 
     @Override
@@ -35,8 +36,9 @@ public class ObjGate extends Object{
         
             screenX = worldX - gp.player.worldX + gp.player.screenX;
             screenY = worldY - gp.player.worldY + gp.player.screenY;
-            size = gp.tileSize;
-            
+            size = gp.tileSize*10;
+            solidArea.x = solidArea.x *2;
+            solidArea.y = solidArea.y *2;
          
             //draws to the map
                 

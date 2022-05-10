@@ -21,7 +21,7 @@ public class Player extends Entity{
     
     GamePanel gp;
     KeyHandler keyHandler;
-    
+    int key = 0;
     
     public final int screenX;
     public final int screenY;
@@ -50,7 +50,7 @@ public class Player extends Entity{
     public void setDefaultValues(){
         //where the player is drawn on the screen when the game starts
         worldX = gp.tileSize*8;
-        worldY = gp.tileSize*11;
+        worldY = gp.tileSize*15;
         speed = 6;
         direction = "down";
         
@@ -106,8 +106,18 @@ public class Player extends Entity{
             
             //this checks if there is an object collision and prevents the player to walk through it
             int objectIndex = gp.cCheck.checkObject(this, true);
-            openGate(objectIndex);
-            openChest(objectIndex);
+            
+            if(keyHandler.actionPressed == true && objectIndex == 2 && key !=0){
+                
+                openGate(objectIndex);
+            }
+            
+            if(keyHandler.actionPressed == true && objectIndex == 1){
+                openChest(objectIndex);
+                key++;
+            }
+//            openGate(objectIndex);
+//            openChest(objectIndex);
             
             if(collisionOn == false){
                 
@@ -171,6 +181,7 @@ public class Player extends Entity{
             if(i==2){
                 //changes the image of the gate to an opened state
 
+                gp.object[i].setCollision(false);
                 try{
                     gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Gate_Opened.png"));
                 }catch(IOException e){
@@ -182,7 +193,7 @@ public class Player extends Entity{
         }
         
     }
-    
+
     public void openChest(int i){
         
         if(i!=999){  //999 is just a default value we put to determine that no object is touched

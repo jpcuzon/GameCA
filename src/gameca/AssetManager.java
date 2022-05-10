@@ -7,6 +7,7 @@ package gameca;
 import Object.Castle;
 import Object.ObjChest;
 import Object.ObjGate;
+import Object.ObjVillageHouse;
 /**
  *
  * @author gmcoa
@@ -35,6 +36,9 @@ public class AssetManager {
         gp.object[2].worldX = 8 * gp.tileSize;
         gp.object[2].worldY = 14 * gp.tileSize;
         
+        gp.object[3] = new ObjVillageHouse();
+        gp.object[3].worldX = 30 * gp.tileSize;
+        gp.object[3].worldY = 15 * gp.tileSize;
     }
     
 }

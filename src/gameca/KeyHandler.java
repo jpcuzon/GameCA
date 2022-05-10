@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     
-    public boolean upPressed, downPressed, leftPressed, rightPressed, shiftPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, shiftPressed, actionPressed;
     Player player;
     
     @Override
@@ -52,6 +52,11 @@ public class KeyHandler implements KeyListener{
             System.out.println("Shift");
         }
         
+        if(code == KeyEvent.VK_E){
+            actionPressed = true;
+            System.out.println("Action");
+        }
+        
     
     }
 
@@ -81,6 +86,10 @@ public class KeyHandler implements KeyListener{
     
         if(code == KeyEvent.VK_SHIFT){
             shiftPressed = false;
+        }
+        
+        if(code == KeyEvent.VK_E){
+            actionPressed = false;
         }
         
         
