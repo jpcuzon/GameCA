@@ -107,6 +107,7 @@ public class Player extends Entity{
             //this checks if there is an object collision and prevents the player to walk through it
             int objectIndex = gp.cCheck.checkObject(this, true);
             openGate(objectIndex);
+            openChest(objectIndex);
             
             if(collisionOn == false){
                 
@@ -178,6 +179,23 @@ public class Player extends Entity{
             }
             
             
+        }
+        
+    }
+    
+    public void openChest(int i){
+        
+        if(i!=999){  //999 is just a default value we put to determine that no object is touched
+            
+            if(i==1){
+                //changes the image of the gate to an opened state
+
+                try{
+                    gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Chest_Opened.png"));
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
             
             
         }

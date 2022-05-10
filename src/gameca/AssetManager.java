@@ -29,11 +29,11 @@ public class AssetManager {
         
         gp.object[1] = new ObjChest();
         gp.object[1].worldX = 2 * gp.tileSize;
-        gp.object[1].worldY = 11 * gp.tileSize;
+        gp.object[1].worldY = 15 * gp.tileSize;
         
         gp.object[2] = new ObjGate();
         gp.object[2].worldX = 8 * gp.tileSize;
-        gp.object[2].worldY = 10 * gp.tileSize;
+        gp.object[2].worldY = 14 * gp.tileSize;
         
     }
     

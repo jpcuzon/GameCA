@@ -46,17 +46,19 @@ public class TileManager {
             tile[0].collision = true;
             
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Floor_1.png"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_CornerL.png"));
+            tile[1].collision = true;
             
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Floor_2.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_Top.png"));
+            tile[2].collision = true;
             
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Window_2.png"));
-//            tile[3].collision = true;
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_CornerR.png"));
+            tile[3].collision = true;
             
             tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Roof.png"));
+            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_Right.png"));
             tile[4].collision = true;
             
 //            tile[5] = new Tile();
@@ -73,7 +75,7 @@ public class TileManager {
 //            
             
             tile[7] = new Tile();
-            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
+            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Tree.png"));
             tile[7].collision = true;
             
             tile[8] = new Tile();
@@ -82,6 +84,9 @@ public class TileManager {
 
             tile[9] = new Tile();
             tile[9].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
+            
+            tile[10] = new Tile();
+            tile[10].image = ImageIO.read(getClass().getResourceAsStream("/tiles/bridge.png"));
             
             
             
