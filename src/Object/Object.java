@@ -18,6 +18,7 @@ public class Object {
     
     public BufferedImage image;
     public String name;
+    public boolean open = false;
     public boolean collision = false;
     public int worldX, worldY,screenX,screenY,size;
     
@@ -53,5 +54,16 @@ public class Object {
     public void setCollision(boolean collision) {
         this.collision = collision;
     }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
+
+    
+    
     
 }

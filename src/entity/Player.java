@@ -21,7 +21,6 @@ public class Player extends Entity{
     
     GamePanel gp;
     KeyHandler keyHandler;
-    int key = 0;
     
     public final int screenX;
     public final int screenY;
@@ -107,15 +106,15 @@ public class Player extends Entity{
             //this checks if there is an object collision and prevents the player to walk through it
             int objectIndex = gp.cCheck.checkObject(this, true);
             
-            if(keyHandler.actionPressed == true && objectIndex == 2 && key !=0){
-                
-                openGate(objectIndex);
+            if(keyHandler.actionPressed == true){
+                System.out.println(key);
+                openObject(objectIndex);
             }
             
-            if(keyHandler.actionPressed == true && objectIndex == 1){
-                openChest(objectIndex);
-                key++;
-            }
+//            if(keyHandler.actionPressed == true && objectIndex == 1){
+//                openChest(objectIndex);
+//                key++;
+//            }
 //            openGate(objectIndex);
 //            openChest(objectIndex);
             
@@ -173,6 +172,43 @@ public class Player extends Entity{
        
     }
     
+    public void openObject(int i){
+        
+        if(i!=999){  //999 is just a default value we put to determine that no object is touched
+            
+            String objName = gp.object[i].name;
+            
+            switch(objName){
+                case "Chest":
+                    if(gp.object[i].isOpen() == false){
+                        try{
+                        gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Chest_Opened.png"));
+                        }catch(IOException e){
+                            e.printStackTrace();
+                        }
+                        gp.object[i].setOpen(true);
+                        key++;
+                    }
+                    
+                    break;
+                case "Gate":
+                    if(key>0 && gp.object[i].isOpen() == false){
+                        gp.object[i].setCollision(false);
+                        try{
+                            gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Gate_Opened.png"));
+                        }catch(IOException e){
+                            e.printStackTrace();
+                        }
+                        key--;
+                    }
+                    break;
+                
+            }
+            
+            
+        }
+        
+    }
     
     public void openGate(int i){
         

@@ -19,6 +19,7 @@ public class Entity {
     public BufferedImage up1, up2, up3, left1, left2, left3, right1,right2, right3, down1, down2, down3;
     public BufferedImage candAnim1, candAnim2;
     public String direction;
+    int key = 0;
     
     public int spriteCounter = 0;
     public int spriteNum = 1;
