@@ -15,16 +15,34 @@ import javax.imageio.ImageIO;
  */
 public class ObjVillageHouse extends Object{
     
-    public ObjVillageHouse() {
+    int tempX;
+    int tempY;
+    
+    public ObjVillageHouse(int i) {
         
         name = "Village_House";
         
-        try{
+        if (i == 1){
         
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/house1.png"));
-        }catch(IOException e){
-            e.printStackTrace();
+            tempX=210;
+            tempY=210;
+            try{
+
+                image = ImageIO.read(getClass().getResourceAsStream("/objects/house1.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }else if (i == 2){
+            tempX=180;
+            tempY=220;
+            try{
+
+                image = ImageIO.read(getClass().getResourceAsStream("/objects/house2.png"));
+            }catch(IOException e){
+                e.printStackTrace();
+            }
         }
+        
         
         
         collision = true;
@@ -39,8 +57,10 @@ public class ObjVillageHouse extends Object{
             size = gp.tileSize *7;
             solidArea.x = solidArea.x *5;
             solidArea.y = solidArea.y *5;
-            solidArea.height = 210;
-            solidArea.width = 210;
+
+            solidArea.height = tempY;
+            solidArea.width = tempX;
+            
          
             //draws to the map
                 
