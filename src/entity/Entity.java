@@ -28,4 +28,7 @@ public class Entity {
     public boolean collisionOn = false;
     public boolean action = false;
     
+    public int getKey() {
+        return key;
+    }
 }
