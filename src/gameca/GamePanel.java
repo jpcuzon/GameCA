@@ -8,6 +8,7 @@ package gameca;
 //import entity.MiscCandle;
 import Object.ObjCastle;
 import Object.Object;
+import entity.NPCWise;
 import entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -52,13 +53,17 @@ public class GamePanel extends JPanel implements Runnable{
     //System
     TileManager tileManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
-    Sound sound = new Sound();
+    Sound soundEffect = new Sound();
+    Sound music = new Sound();
     public CollisionCheck cCheck = new CollisionCheck(this);
     public AssetManager aManager = new AssetManager(this);
+    public UI ui = new UI(this);
     Thread gameThread;
     
     //Entities and Objects
     public Player player = new Player(this, keyHandler);
+    public NPCWise wise = new NPCWise(this);
+    
     public Object object[]= new Object[10] ;  //array to store as many as 10 objects to be shown at a time
     
     
@@ -196,7 +201,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         
 //        candle.update();
-         player.update();
+        wise.update();
+        player.update();
     }
     
     //sets the bound limits of the object based on the screen size
@@ -233,8 +239,15 @@ public class GamePanel extends JPanel implements Runnable{
         
         
         
-        //draws player
+        //draws entities
+        
+        wise.draw(g2, tileSize*3, tileSize*15);
         player.draw(g2);
+        
+        
+        
+        //UI
+        ui.draw(g2);
         
         g2.dispose(); //release any resources that this is using
         
@@ -242,20 +255,20 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void playMusic(int i){
         
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+        music.setFile(i);
+        music.play();
+        music.loop();
         
     }
     
     public void stopMusic(){
-        sound.stop();
+        music.stop();
     }
     
     public void playSoundEffect(int i){
         
-        sound.setFile(i);
-        sound.play();
+        soundEffect.setFile(i);
+        soundEffect.play();
     }
     
     //I moved them to the assetmanager
