@@ -82,7 +82,7 @@ public class Player extends Entity{
     public void update(){
         //The player runs/moves faster when space is pressed
         if(keyHandler.shiftPressed == true){
-            speed = 8;
+            speed = 15;
         }else{speed = 5;}
         
         if(keyHandler.upPressed == true || keyHandler.downPressed == true  //only animates the sprite when a key is pressed

@@ -3,16 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/tile/Tile.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/tile/TileManager.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/Object/ObjVillageHouse.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/Object/ObjChest.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/Object/Object.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/entity/Entity.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/Object/ObjKey.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/gameca/GamePanel.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/gameca/CollisionCheck.java</file>
-            <file>file:/C:/Users/claud/OneDrive/General/Documents/NetBeansProjects/GameCA/src/Object/ObjCastle.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/tile/Tile.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/Object/ObjVillageHouse.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/gameca/KeyHandler.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/gameca/GamePanel.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/tile/TileManager.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/Object/ObjChest.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/gameca/AssetManager.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/gameca/GameCA.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/entity/Entity.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/Object/ObjGate.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/gameca/Sound.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/res/maps/WorldMap.txt</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/Object/Object.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/entity/Player.java</file>
+            <file>file:/C:/Users/gmcoa/Documents/NetBeansProjects/GameCA/src/gameca/CollisionCheck.java</file>
         </group>
     </open-files>
 </project-private>
