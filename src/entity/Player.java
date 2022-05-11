@@ -99,6 +99,8 @@ public class Player extends Entity{
                 direction = "right";
             }
             
+            
+            
             //this checks if there is tile collision and if it happpens the player cannot move in that direction
             collisionOn = false;
             gp.cCheck.checkTile(this);
@@ -106,9 +108,9 @@ public class Player extends Entity{
             //this checks if there is an object collision and prevents the player to walk through it
             int objectIndex = gp.cCheck.checkObject(this, true);
             
-            if(keyHandler.actionPressed == true){
+            if(keyHandler.actionPressed == true){ //do an action if the action key is pressed
                 System.out.println(key);
-                openObject(objectIndex);
+                interactObject(objectIndex); 
             }
             
 //            if(keyHandler.actionPressed == true && objectIndex == 1){
@@ -150,12 +152,14 @@ public class Player extends Entity{
                 switch(spriteNum){
                     case 1:
                         spriteNum = 2;
+                        gp.playSoundEffect(1); //adds footstep sound
                         break;
                     case 2:
                         spriteNum = 3;
                         break;
                     case 3:
                         spriteNum = 4;
+                        gp.playSoundEffect(1);
                         break;
                     case 4:
                         spriteNum = 1;
@@ -172,14 +176,15 @@ public class Player extends Entity{
        
     }
     
-    public void openObject(int i){
+    //Interacts with the object depending what object is interacted with
+    public void interactObject(int i){
         
         if(i!=999){  //999 is just a default value we put to determine that no object is touched
             
             String objName = gp.object[i].name;
             
             switch(objName){
-                case "Chest":
+                case "Chest": //opens a chest and collects a key 
                     if(gp.object[i].isOpen() == false){
                         try{
                         gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Chest_Opened.png"));
@@ -191,7 +196,7 @@ public class Player extends Entity{
                     }
                     
                     break;
-                case "Gate":
+                case "Gate": //Opens a gate only if the player has enough key
                     if(key>0 && gp.object[i].isOpen() == false){
                         gp.object[i].setCollision(false);
                         try{
@@ -209,46 +214,6 @@ public class Player extends Entity{
         }
         
     }
-    
-    public void openGate(int i){
-        
-        if(i!=999){  //999 is just a default value we put to determine that no object is touched
-            
-            if(i==2){
-                //changes the image of the gate to an opened state
-
-                gp.object[i].setCollision(false);
-                try{
-                    gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Gate_Opened.png"));
-                }catch(IOException e){
-                    e.printStackTrace();
-                }
-            }
-            
-            
-        }
-        
-    }
-
-    public void openChest(int i){
-        
-        if(i!=999){  //999 is just a default value we put to determine that no object is touched
-            
-            if(i==1){
-                //changes the image of the gate to an opened state
-
-                try{
-                    gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Chest_Opened.png"));
-                }catch(IOException e){
-                    e.printStackTrace();
-                }
-            }
-            
-            
-        }
-        
-    }
-    
     
     public void draw(Graphics2D g2){
         

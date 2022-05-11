@@ -42,23 +42,26 @@ public class GamePanel extends JPanel implements Runnable{
     //World Settings
     public final int maxWorldCol = 50;  //number of columns in the map tile
     public final int maxWorldRow = 50;
-    public final int worldWidth = tileSize * maxWorldCol;
-    public final int worldHeight = tileSize* maxWorldRow;
+//    public final int worldWidth = tileSize * maxWorldCol;
+//    public final int worldHeight = tileSize* maxWorldRow;
     
     
     //FPS
     int FPS = 60;
     
-    
+    //System
     TileManager tileManager = new TileManager(this);
     KeyHandler keyHandler = new KeyHandler();
-    Thread gameThread;
+    Sound sound = new Sound();
     public CollisionCheck cCheck = new CollisionCheck(this);
     public AssetManager aManager = new AssetManager(this);
+    Thread gameThread;
     
+    //Entities and Objects
     public Player player = new Player(this, keyHandler);
-    //array to store as many as 10 objects to be shown at a time
-    public Object object[]= new Object[10] ; 
+    public Object object[]= new Object[10] ;  //array to store as many as 10 objects to be shown at a time
+    
+    
     
     
     
@@ -88,6 +91,8 @@ public class GamePanel extends JPanel implements Runnable{
     
 //        setObject();
         aManager.setObj();
+        
+//        playMusic(0);
     }
     
     
@@ -233,6 +238,24 @@ public class GamePanel extends JPanel implements Runnable{
         
         g2.dispose(); //release any resources that this is using
         
+    }
+    
+    public void playMusic(int i){
+        
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+        
+    }
+    
+    public void stopMusic(){
+        sound.stop();
+    }
+    
+    public void playSoundEffect(int i){
+        
+        sound.setFile(i);
+        sound.play();
     }
     
     //I moved them to the assetmanager
