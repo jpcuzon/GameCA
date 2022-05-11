@@ -18,7 +18,8 @@ public class ObjCastle extends Object {
 
     public ObjCastle() {
         
-        name = "Castle";       
+        name = "Castle";
+        
         try{
         
             image = ImageIO.read(getClass().getResourceAsStream("/objects/Castle.png"));
@@ -39,11 +40,7 @@ public class ObjCastle extends Object {
             size = gp.tileSize *5;
             solidArea.x = solidArea.x *5;
             solidArea.y = solidArea.y *5;
-            //sets the solid area to the size of the image
-            //for some reason I coulnot set it dinamicly
-            solidArea.height = 400;
-            solidArea.width = 400 ;
-           
+         
             //draws to the map
                 
                 g2.drawImage(image, screenX, screenY, size, size, null);

@@ -23,13 +23,8 @@ public class Object {
     public int worldX, worldY,screenX,screenY,size;
     
     public Rectangle solidArea = new Rectangle(0,0,80,80);
-    
-    //default values to be reset after the collision loop
     public int solidAreaDefX = solidArea.x;
     public int solidAreaDefY = solidArea.y;
-    public int solidAreaDefHeigh = solidArea.height;
-    public int solidAreaDefWidth = solidArea.width;
-    
     
     public void Draw(GamePanel gp, Graphics2D g2){
     
