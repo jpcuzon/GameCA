@@ -241,7 +241,7 @@ public class GamePanel extends JPanel implements Runnable{
         
         //draws entities
         
-        wise.draw(g2, tileSize*3, tileSize*15);
+        wise.draw(g2, tileSize, tileSize);
         player.draw(g2);
         
         

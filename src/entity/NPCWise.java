@@ -16,24 +16,21 @@ import javax.imageio.ImageIO;
  *
  * @author gmcoa
  */
-public class NPCWise extends Entity{
+public final class NPCWise extends Entity{
     
     GamePanel gp;
     KeyHandler keyHandler;
     
-    public final int screenX;
-    public final int screenY;
+    public int screenX;
+    public int screenY;
     
     public NPCWise(GamePanel gp){
         this.gp = gp;
        //indicates where the player is drawn on the screen 
-        //screenX = gp.tileSize;
-//        screenY = gp.tileSize*7;
+        screenX = gp.tileSize;
+        screenY = gp.tileSize*7;
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
-        
-        worldX = gp.tileSize;
-        worldY = gp.tileSize*7;
         
         solidArea = new Rectangle(8,16,gp.tileSize/2,gp.tileSize/2);
         
@@ -58,7 +55,7 @@ public class NPCWise extends Entity{
     
     public void setDefaultValues(){
         //where the player is drawn on the screen when the game starts
-        worldX = gp.tileSize*3;
+        worldX = gp.tileSize*10;
         worldY = gp.tileSize*15;
         
     }
@@ -81,7 +78,9 @@ public class NPCWise extends Entity{
     }
     
     public void draw(Graphics2D g2, int A, int B){
-        
+       
+        screenX = worldX - gp.player.worldX + gp.player.screenX;
+        screenY = worldY - gp.player.worldY + gp.player.screenY;
 
         BufferedImage image = null;
         
@@ -93,7 +92,7 @@ public class NPCWise extends Entity{
             image = NPCAnim2;
         }
                 
-        g2.drawImage(image, A, B, gp.tileSize *2 , gp.tileSize * 2, null);
+        g2.drawImage(image, screenX, screenY, (gp.tileSize*2)/3 , (gp.tileSize*2)/3, null);
         
         
         
