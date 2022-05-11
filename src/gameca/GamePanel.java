@@ -6,7 +6,7 @@
 package gameca;
 
 //import entity.MiscCandle;
-import Object.Castle;
+import Object.ObjCastle;
 import Object.Object;
 import entity.Player;
 import java.awt.Color;
@@ -262,7 +262,7 @@ public class GamePanel extends JPanel implements Runnable{
 //    public void setObject(){
 //        
 //        //castle
-//        object[0] = new Castle();
+//        object[0] = new ObjCastle();
 //        object[0].worldX = (13/2) * tileSize;
 //        object[0].worldY = 3 * tileSize;
 //        

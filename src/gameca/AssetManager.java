@@ -4,7 +4,7 @@
  */
 package gameca;
 
-import Object.Castle;
+import Object.ObjCastle;
 import Object.ObjChest;
 import Object.ObjGate;
 import Object.ObjVillageHouse;
@@ -24,7 +24,7 @@ public class AssetManager {
     public void setObj(){
         
           //castle
-        gp.object[0] = new Castle();
+        gp.object[0] = new ObjCastle();
         gp.object[0].worldX = (13/2) * gp.tileSize;
         gp.object[0].worldY = 3 * gp.tileSize;
         

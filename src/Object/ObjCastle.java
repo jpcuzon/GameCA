@@ -14,9 +14,9 @@ import javax.imageio.ImageIO;
  *
  * @author claud
  */
-public class Castle extends Object {
+public class ObjCastle extends Object {
 
-    public Castle() {
+    public ObjCastle() {
         
         name = "Castle";
         
