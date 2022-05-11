@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Object;
 
@@ -12,34 +11,31 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author claud
+ * @author gmcoa
  */
-public class ObjCastle extends Object {
-
-    public ObjCastle() {
+public class ObjKey extends Object {
+    
+    public ObjKey(){
         
-        name = "Castle";
-        
+        name = "Chest";
         try{
-        
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/Castle.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Key_Up.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
         
         
-        collision = true;
+//        collision = true;
+        
     }
-
+    
     @Override
     //changes the way this object is drawn to the screen
     public void Draw(GamePanel gp, Graphics2D g2) {
         
             screenX = worldX - gp.player.worldX + gp.player.screenX;
             screenY = worldY - gp.player.worldY + gp.player.screenY;
-            size = gp.tileSize *5;
-            solidArea.x = solidArea.x *5;
-            solidArea.y = solidArea.y *5;
+            size = gp.tileSize;
          
             //draws to the map
                 
@@ -47,7 +43,6 @@ public class ObjCastle extends Object {
                 
            
             }
-    
     
     
 }

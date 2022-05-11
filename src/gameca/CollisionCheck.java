@@ -150,11 +150,6 @@ public class CollisionCheck {
                 entity.solidArea.y = entity.solidAreaDefY;
                 gp.object[i].solidArea.x = gp.object[i].solidAreaDefX;
                 gp.object[i].solidArea.y = gp.object[i].solidAreaDefY;
-                
-                //it was meant to reset the solid area of an object, but didnt work properly
-//                gp.object[i].solidArea.height = gp.object[i].solidAreaDefY;
-//                gp.object[i].solidArea.width = gp.object[i].solidAreaDefY;
-                
             }
             
         }
