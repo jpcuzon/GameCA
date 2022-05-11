@@ -36,9 +36,11 @@ public class ObjVillageHouse extends Object{
         
             screenX = worldX - gp.player.worldX + gp.player.screenX;
             screenY = worldY - gp.player.worldY + gp.player.screenY;
-            size = gp.tileSize*10;
-            solidArea.x = solidArea.x *2;
-            solidArea.y = solidArea.y *2;
+            size = gp.tileSize *7;
+            solidArea.x = solidArea.x *5;
+            solidArea.y = solidArea.y *5;
+            solidArea.height = 210;
+            solidArea.width = 210;
          
             //draws to the map
                 
