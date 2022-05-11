@@ -192,6 +192,7 @@ public class Player extends Entity{
                             e.printStackTrace();
                         }
                         gp.object[i].setOpen(true);
+                        gp.ui.showMessage("You obtained a key!");
                         key++;
                     }
                     
