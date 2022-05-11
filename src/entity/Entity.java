@@ -27,11 +27,5 @@ public class Entity {
     public int solidAreaDefX, solidAreaDefY;
     public boolean collisionOn = false;
     public boolean action = false;
- 
-    public int getKey() {
-        return key;
-    }
-    
-    
     
 }
