@@ -202,7 +202,7 @@ public class GamePanel extends JPanel implements Runnable{
         
 //        candle.update();
         wise.update();
-        player.update();
+         player.update();
     }
     
     //sets the bound limits of the object based on the screen size
