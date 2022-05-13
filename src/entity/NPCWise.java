@@ -36,6 +36,8 @@ public final class NPCWise extends Entity{
         
         solidAreaDefX = solidArea.x;
         solidAreaDefY = solidArea.y;
+        collisionOn = true;
+        
         setDefaultValues();
         getNPCImage();
         
@@ -92,7 +94,7 @@ public final class NPCWise extends Entity{
             image = NPCAnim2;
         }
                 
-        g2.drawImage(image, screenX, screenY, (gp.tileSize*2)/3 , (gp.tileSize*2)/3, null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize , gp.tileSize, null);
         
         
         

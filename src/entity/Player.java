@@ -21,6 +21,7 @@ public class Player extends Entity{
     
     GamePanel gp;
     KeyHandler keyHandler;
+    int imageUpdateSpeed; //determines the rate of image update depending on whether the player is running or not
     
     public final int screenX;
     public final int screenY;
@@ -78,7 +79,7 @@ public class Player extends Entity{
         
     }
 
-      
+    
     public void update(){
         //The player runs/moves faster when space is pressed
         if(keyHandler.shiftPressed == true){
@@ -148,7 +149,14 @@ public class Player extends Entity{
 
             
             spriteCounter++;
-            if(spriteCounter > 10){
+            
+            //checks if shift is pressed and doubles the animation speed if true
+            if(keyHandler.shiftPressed == true){
+                imageUpdateSpeed = 5;
+            }else{
+                imageUpdateSpeed = 10;
+            }
+            if(spriteCounter > imageUpdateSpeed){
                 switch(spriteNum){
                     case 1:
                         spriteNum = 2;

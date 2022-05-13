@@ -73,21 +73,7 @@ public class TileManager {
         }
         
     }
-//    
-//    public void setupTile(int index, String tile, boolean collision){
-//        
-//        try{
-//            tile[index] = new Tile();
-//            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/"+tile+".png"));
-//            tile[index].collision = collision;
-//            
-//            
-//            
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-//        
-//    }
+  
     
     // loads a map data from a text file
     public void loadMap(String mapData){
