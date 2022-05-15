@@ -17,6 +17,8 @@ import java.awt.image.BufferedImage;
  */
 public class Object {
     
+    //This class acts as a blueprint for all the objects that will be used in the game
+    
     public BufferedImage image;
     public String name;
     public boolean open = false;

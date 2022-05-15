@@ -20,6 +20,7 @@ public class Sound {
     
     public Sound(){
         
+        //fetch the sound file and store it on a variable
         soundURL[0] = getClass().getResource("/sound/Bat_Country.wav");
         soundURL[1] = getClass().getResource("/sound/Walk_Grass.wav");
         

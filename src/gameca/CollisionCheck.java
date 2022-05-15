@@ -15,6 +15,7 @@ public class CollisionCheck {
     
     GamePanel gp;
 
+    //Implements a collision method on objects and certain tiles as well as npcs so the player won't run over them
     public CollisionCheck(GamePanel gp) {
         this.gp = gp;
     }
@@ -151,9 +152,6 @@ public class CollisionCheck {
                 gp.object[gp.currentMap][i].solidArea.x = gp.object[gp.currentMap][i].solidAreaDefX;
                 gp.object[gp.currentMap][i].solidArea.y = gp.object[gp.currentMap][i].solidAreaDefY;
                 
-                //it was meant to reset the solid area of an object, but didnt work properly
-//                gp.object[i].solidArea.height = gp.object[i].solidAreaDefY;
-//                gp.object[i].solidArea.width = gp.object[i].solidAreaDefY;
                 
             }
             
@@ -164,6 +162,7 @@ public class CollisionCheck {
         return index;
     }
     
+    //similar to checkObject
     public int checkEntity(Entity entity, Entity target){
         
         int index = 999;
@@ -220,13 +219,6 @@ public class CollisionCheck {
         target.solidArea.x = target.solidAreaDefX;
         target.solidArea.y = target.solidAreaDefY;
 
-        //it was meant to reset the solid area of an object, but didnt work properly
-//                gp.object[i].solidArea.height = gp.object[i].solidAreaDefY;
-//                gp.object[i].solidArea.width = gp.object[i].solidAreaDefY;
-
-            
-            
-        
         return index;
         
     }

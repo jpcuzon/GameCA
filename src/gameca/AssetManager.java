@@ -22,11 +22,11 @@ public class AssetManager {
         this.gp = gp;
     }
     
+    //Manages the objects like creating one and putting them somwhere on the map
     public void setObj(){
         
         int mapNum = 0;
         
-          //castle
         gp.object[mapNum][0] = new ObjCastle();
         gp.object[mapNum][0].worldX = (13/2) * gp.tileSize;
         gp.object[mapNum][0].worldY = 3 * gp.tileSize;

@@ -90,7 +90,7 @@ public final class NPCWise extends Entity{
             image = NPCAnim2;
         }
         
-        //Stops the camera from moving when at the edge
+        //Keeps the NPC in place when the player go past the middle part of the screen
         if(gp.player.screenX > gp.player.worldX){
             screenX = worldX;
         }
