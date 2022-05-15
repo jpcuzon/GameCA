@@ -18,32 +18,24 @@ import javax.imageio.ImageIO;
  */
 public final class NPCWise extends Entity{
     
-    GamePanel gp;
-    KeyHandler keyHandler;
     
     public int screenX;
     public int screenY;
     
     public NPCWise(GamePanel gp){
-        this.gp = gp;
-       //indicates where the player is drawn on the screen 
-        screenX = gp.tileSize;
-        screenY = gp.tileSize*7;
-        screenX = gp.screenWidth/2 - (gp.tileSize/2);
-        screenY = gp.screenHeight/2 - (gp.tileSize/2);
         
-        solidArea = new Rectangle(8,16,gp.tileSize/2,gp.tileSize/2);
+        super(gp);
         
         solidAreaDefX = solidArea.x;
         solidAreaDefY = solidArea.y;
         collisionOn = true;
         
         setDefaultValues();
-        getNPCImage();
+        getImage();
         
     }
     
-    public void getNPCImage(){
+    public void getImage(){
         
         try{
             NPCAnim1 = ImageIO.read(getClass().getResourceAsStream("/NPCWise/NPC_Anim_1.png"));
@@ -57,7 +49,7 @@ public final class NPCWise extends Entity{
     
     public void setDefaultValues(){
         //where the player is drawn on the screen when the game starts
-        worldX = gp.tileSize*10;
+        worldX = gp.tileSize*7;
         worldY = gp.tileSize*15;
         
     }
@@ -93,8 +85,27 @@ public final class NPCWise extends Entity{
         if(spriteNum == 2){
             image = NPCAnim2;
         }
-                
-        g2.drawImage(image, screenX, screenY, gp.tileSize , gp.tileSize, null);
+        
+        //Stops the camera from moving when at the edge
+        if(gp.player.screenX > gp.player.worldX){
+            screenX = worldX;
+        }
+        if(gp.player.screenY > gp.player.worldY){
+
+            screenY = worldY;
+        }
+        int rightOffset = gp.screenWidth - gp.player.screenX;
+        if(rightOffset>gp.worldWidth - gp.player.worldX){
+            screenX = gp.screenWidth - (gp.worldWidth - worldX);
+
+        }
+        int bottomOffset = gp.screenHeight - gp.player.screenY;
+        if(bottomOffset>gp.worldHeight - gp.player.worldY){
+            screenY = gp.screenHeight - (gp.worldHeight - worldY);
+
+        }
+        
+        g2.drawImage(image, screenX, screenY, A , B, null);
         
         
         

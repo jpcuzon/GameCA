@@ -8,6 +8,7 @@ import Object.ObjCastle;
 import Object.ObjChest;
 import Object.ObjGate;
 import Object.ObjVillageHouse;
+import entity.NPCWise;
 /**
  *
  * @author gmcoa
@@ -23,42 +24,45 @@ public class AssetManager {
     
     public void setObj(){
         
+        int mapNum = 0;
+        
           //castle
-        gp.object[0] = new ObjCastle();
-        gp.object[0].worldX = (13/2) * gp.tileSize;
-        gp.object[0].worldY = 3 * gp.tileSize;
+        gp.object[mapNum][0] = new ObjCastle();
+        gp.object[mapNum][0].worldX = (13/2) * gp.tileSize;
+        gp.object[mapNum][0].worldY = 3 * gp.tileSize;
         
-        gp.object[1] = new ObjChest();
-        gp.object[1].worldX = 40 * gp.tileSize;
-        gp.object[1].worldY = 21 * gp.tileSize;
+        gp.object[mapNum][1] = new ObjChest();
+        gp.object[mapNum][1].worldX = 40 * gp.tileSize;
+        gp.object[mapNum][1].worldY = 21 * gp.tileSize;
         
-        gp.object[2] = new ObjGate();
-        gp.object[2].worldX = 8 * gp.tileSize;
-        gp.object[2].worldY = 14 * gp.tileSize;
+        gp.object[mapNum][2] = new ObjGate();
+        gp.object[mapNum][2].worldX = 8 * gp.tileSize;
+        gp.object[mapNum][2].worldY = 14 * gp.tileSize;
         
-        gp.object[3] = new ObjVillageHouse(1);
-        gp.object[3].worldX = 13 * gp.tileSize;
-        gp.object[3].worldY = 40 * gp.tileSize;
+        gp.object[mapNum][3] = new ObjVillageHouse(1);
+        gp.object[mapNum][3].worldX = 13 * gp.tileSize;
+        gp.object[mapNum][3].worldY = 40 * gp.tileSize;
         
-        gp.object[4] = new ObjVillageHouse(1);
-        gp.object[4].worldX = 20 * gp.tileSize;
-        gp.object[4].worldY = 45 * gp.tileSize;
+        gp.object[mapNum][4] = new ObjVillageHouse(1);
+        gp.object[mapNum][4].worldX = 20 * gp.tileSize;
+        gp.object[mapNum][4].worldY = 45 * gp.tileSize;
         
-        gp.object[5] = new ObjVillageHouse(1);
-        gp.object[5].worldX = 17 * gp.tileSize;
-        gp.object[5].worldY = 37 * gp.tileSize;
+        gp.object[mapNum][5] = new ObjVillageHouse(1);
+        gp.object[mapNum][5].worldX = 17 * gp.tileSize;
+        gp.object[mapNum][5].worldY = 37 * gp.tileSize;
         
-        gp.object[6] = new ObjVillageHouse(2);
-        gp.object[6].worldX = 20 * gp.tileSize;
-        gp.object[6].worldY = 41 * gp.tileSize;
+        gp.object[mapNum][6] = new ObjVillageHouse(2);
+        gp.object[mapNum][6].worldX = 20 * gp.tileSize;
+        gp.object[mapNum][6].worldY = 41 * gp.tileSize;
         
-        gp.object[7] = new ObjVillageHouse(2);
-        gp.object[7].worldX = 12 * gp.tileSize;
-        gp.object[7].worldY = 36 * gp.tileSize;
+        gp.object[mapNum][7] = new ObjVillageHouse(2);
+        gp.object[mapNum][7].worldX = 12 * gp.tileSize;
+        gp.object[mapNum][7].worldY = 36 * gp.tileSize;
         
-        gp.object[8] = new ObjVillageHouse(2);
-        gp.object[8].worldX = 15 * gp.tileSize;
-        gp.object[8].worldY = 44 * gp.tileSize;
+        gp.object[mapNum][8] = new ObjVillageHouse(2);
+        gp.object[mapNum][8].worldX = 15 * gp.tileSize;
+        gp.object[mapNum][8].worldY = 44 * gp.tileSize;
     }
+    
     
 }

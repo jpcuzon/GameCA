@@ -34,22 +34,42 @@ public class ObjCastle extends Object {
     //changes the way this object is drawn to the screen
     public void Draw(GamePanel gp, Graphics2D g2) {
         
-            screenX = worldX - gp.player.worldX + gp.player.screenX;
-            screenY = worldY - gp.player.worldY + gp.player.screenY;
-            size = gp.tileSize *5;
-            solidArea.x = solidArea.x *5;
-            solidArea.y = solidArea.y *5;
-            //sets the solid area to the size of the image
-            //for some reason I coulnot set it dinamicly
-            solidArea.height = 400;
-            solidArea.width = 400 ;
-           
-            //draws to the map
-                
-                g2.drawImage(image, screenX, screenY, size, size, null);
-                
-           
-            }
+        screenX = worldX - gp.player.worldX + gp.player.screenX;
+        screenY = worldY - gp.player.worldY + gp.player.screenY;
+        size = gp.tileSize *5;
+        solidArea.x = solidArea.x *5;
+        solidArea.y = solidArea.y *5;
+        //sets the solid area to the size of the image
+        //for some reason I coulnot set it dinamicly
+        solidArea.height = 400;
+        solidArea.width = 400 ;
+
+
+        //Stops the camera from moving when at the edge
+        if(gp.player.screenX > gp.player.worldX){
+            screenX = worldX;
+        }
+        if(gp.player.screenY > gp.player.worldY){
+
+            screenY = worldY;
+        }
+        int rightOffset = gp.screenWidth - gp.player.screenX;
+        if(rightOffset>gp.worldWidth - gp.player.worldX){
+            screenX = gp.screenWidth - (gp.worldWidth - worldX);
+
+        }
+        int bottomOffset = gp.screenHeight - gp.player.screenY;
+        if(bottomOffset>gp.worldHeight - gp.player.worldY){
+            screenY = gp.screenHeight - (gp.worldHeight - worldY);
+
+        }
+            
+        //draws to the map
+
+            g2.drawImage(image, screenX, screenY, size, size, null);
+
+
+        }
     
     
     

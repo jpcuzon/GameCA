@@ -6,7 +6,7 @@ package entity;
 
 import gameca.GamePanel;
 import gameca.KeyHandler;
-import java.awt.Color;
+import gameca.UtilityTool;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -19,7 +19,6 @@ import javax.imageio.ImageIO;
  */
 public class Player extends Entity{
     
-    GamePanel gp;
     KeyHandler keyHandler;
     int imageUpdateSpeed; //determines the rate of image update depending on whether the player is running or not
     
@@ -27,11 +26,10 @@ public class Player extends Entity{
     public final int screenY;
     
     public Player(GamePanel gp, KeyHandler keyHandler){
-        this.gp = gp;
+        
+        super(gp); //we call the constructor of the super class and pass it into gp
         this.keyHandler = keyHandler;
-       //indicates where the player is drawn on the screen 
-        //screenX = gp.tileSize;
-//        screenY = gp.tileSize*7;
+        
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         
@@ -43,7 +41,7 @@ public class Player extends Entity{
         solidAreaDefX = solidArea.x;
         solidAreaDefY = solidArea.y;
         setDefaultValues();
-        getPlayerImage();
+        getImage();
         
     }
     
@@ -51,34 +49,31 @@ public class Player extends Entity{
         //where the player is drawn on the screen when the game starts
         worldX = gp.tileSize*16;
         worldY = gp.tileSize*47;
-        speed = 6;
+        speed = 5;
         direction = "down";
         
     }
     
-    public void getPlayerImage(){
+    public void getImage(){
         
-        try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Up_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Up_2.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Up_3.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Down_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Down_2.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Down_3.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Left_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Left_2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Left_3.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Right_2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/warrior/Walk_Right_3.png"));
-            
-            
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        
+        up1 = setup("/warrior/Walk_Up_1");
+        up2 = setup("/warrior/Walk_Up_2");
+        up3 = setup("/warrior/Walk_Up_3");
+        down1 = setup("/warrior/Walk_Down_1");
+        down2 = setup("/warrior/Walk_Down_2");
+        down3 = setup("/warrior/Walk_Down_3");
+        left1 = setup("/warrior/Walk_Left_1");
+        left2 = setup("/warrior/Walk_Left_2");
+        left3 = setup("/warrior/Walk_Left_3");
+        right1 = setup("/warrior/Walk_Right_1");
+        right2 = setup("/warrior/Walk_Right_2");
+        right3 = setup("/warrior/Walk_Right_3");
+       
         
     }
 
+    
     
     public void update(){
         //The player runs/moves faster when space is pressed
@@ -109,17 +104,16 @@ public class Player extends Entity{
             //this checks if there is an object collision and prevents the player to walk through it
             int objectIndex = gp.cCheck.checkObject(this, true);
             
+            //checks npc collision
+            int npcIndex = gp.cCheck.checkEntity(this, gp.wise);
+            interactNPC(npcIndex);
+            
             if(keyHandler.actionPressed == true){ //do an action if the action key is pressed
                 System.out.println(key);
                 interactObject(objectIndex); 
             }
             
-//            if(keyHandler.actionPressed == true && objectIndex == 1){
-//                openChest(objectIndex);
-//                key++;
-//            }
-//            openGate(objectIndex);
-//            openChest(objectIndex);
+
             
             if(collisionOn == false){
                 
@@ -179,8 +173,6 @@ public class Player extends Entity{
         }
         
         
-        
-        
        
     }
     
@@ -189,31 +181,40 @@ public class Player extends Entity{
         
         if(i!=999){  //999 is just a default value we put to determine that no object is touched
             
-            String objName = gp.object[i].name;
+            
+            String objName = gp.object[gp.currentMap][i].name;
             
             switch(objName){
                 case "Chest": //opens a chest and collects a key 
-                    if(gp.object[i].isOpen() == false){
+                    if(gp.object[gp.currentMap][i].isOpen() == false){
                         try{
-                        gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Chest_Opened.png"));
+                        gp.object[gp.currentMap][i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Chest_Opened.png"));
                         }catch(IOException e){
                             e.printStackTrace();
                         }
-                        gp.object[i].setOpen(true);
                         gp.ui.showMessage("You obtained a key!");
+                        gp.object[gp.currentMap][i].setOpen(true);
+                        
                         key++;
                     }
                     
                     break;
                 case "Gate": //Opens a gate only if the player has enough key
-                    if(key>0 && gp.object[i].isOpen() == false){
-                        gp.object[i].setCollision(false);
+                    if(key>0 && gp.object[gp.currentMap][i].isOpen() == false){
+                        gp.ui.showMessage("Gate unlocked!");
+                        gp.object[gp.currentMap][i].setCollision(false);
                         try{
-                            gp.object[i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Gate_Opened.png"));
+                            gp.object[gp.currentMap][i].image = ImageIO.read(getClass().getResourceAsStream("/Objects/Obj_Gate_Opened.png"));
+                            gp.object[gp.currentMap][i].setOpen(true);
+                            
                         }catch(IOException e){
                             e.printStackTrace();
                         }
+                        
+                        
                         key--;
+                    }else if(key<1 && gp.object[gp.currentMap][i].isOpen() == false) {
+                        gp.ui.showMessage("The gate is locked!");
                     }
                     break;
                 
@@ -221,6 +222,17 @@ public class Player extends Entity{
             
             
         }
+        
+    }
+    
+    //checks if the player interacts with the npc
+    public void interactNPC(int i){
+        
+        if(i!=999){
+        }
+        
+        
+        
         
     }
     
@@ -306,7 +318,30 @@ public class Player extends Entity{
             
             
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize , gp.tileSize , null);
+        
+        int x = screenX;
+        int y = screenY;
+        
+        if(screenX > worldX){
+            x = worldX;
+        }
+        if(screenY > worldY){
+            y = worldY;
+        }
+        int rightOffset = gp.screenWidth - screenX;
+        if(rightOffset>gp.worldWidth - worldX){
+            x = gp.screenWidth - (gp.worldWidth - worldX);
+
+        }
+        int bottomOffset = gp.screenHeight - screenY;
+        if(bottomOffset>gp.worldHeight - worldY){
+            y = gp.screenHeight - (gp.worldHeight - worldY);
+
+        }
+        
+        
+        
+        g2.drawImage(image, x, y, null);
         
         
         
