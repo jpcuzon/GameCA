@@ -223,17 +223,18 @@ public class GamePanel extends JPanel implements Runnable{
         }
         
     }
+    // clamp method was rplaced with collision check
     
     //sets the bound limits of the object based on the screen size
-    public static int clamp(int var, int min, int max){
-        
-        if(var >= max){
-            return var = max;
-        }else if(var <= min){
-            return var = min;
-        }else{return var;}
-        
-    }
+//    public static int clamp(int var, int min, int max){
+//        
+//        if(var >= max){
+//            return var = max;
+//        }else if(var <= min){
+//            return var = min;
+//        }else{return var;}
+//        
+//    }
     
     public void paintComponent(Graphics g){
         
