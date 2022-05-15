@@ -28,7 +28,7 @@ public class ObjVillageHouse extends Object{
             tempY=210;
             try{
 
-                image = ImageIO.read(getClass().getResourceAsStream("/objects/house1.png"));
+                image = ImageIO.read(getClass().getResourceAsStream("/objects/Obj_VillageHouse_1.png"));
             }catch(IOException e){
                 e.printStackTrace();
             }
@@ -37,7 +37,7 @@ public class ObjVillageHouse extends Object{
             tempY=220;
             try{
 
-                image = ImageIO.read(getClass().getResourceAsStream("/objects/house2.png"));
+                image = ImageIO.read(getClass().getResourceAsStream("/objects/Obj_VillageHouse_2.png"));
             }catch(IOException e){
                 e.printStackTrace();
             }

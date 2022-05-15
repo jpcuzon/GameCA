@@ -25,8 +25,6 @@ public class ObjKey extends Object {
         }
         
         
-//        collision = true;
-        
     }
     
     @Override

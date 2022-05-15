@@ -36,72 +36,72 @@ public class KeyHandler implements KeyListener{
         
         int code = e.getExtendedKeyCode();
         
-       //if in play state
-       if(gp.gameState == gp.playState){ 
-        if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
-            upPressed = true;
-            
+       //only works if in play state
+        if(gp.gameState == gp.playState){ 
+             if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                 upPressed = true;
+
+             }
+
+             if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                 downPressed = true;
+
+             }
+
+             if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
+                 leftPressed = true;
+
+             }
+
+             if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
+                 rightPressed = true;
+             }
+
+             if(code == KeyEvent.VK_SHIFT){
+                 shiftPressed = true;
+                 System.out.println("Shift");
+             }
+
+             if(code == KeyEvent.VK_E){
+                 actionPressed = true;
+                 System.out.println("Action");
+             }
+
+             if(code == KeyEvent.VK_ENTER){
+                 if(gp.gameState == gp.playState){
+                     gp.gameState = gp.pauseState;
+                 }else if(gp.gameState == gp.pauseState){
+                     gp.gameState = gp.playState;
+                 }
+
+             }
+
+             //DEBUG 
+             if(code == KeyEvent.VK_T){
+                 if(checkDrawTime == false){
+                     checkDrawTime = true;
+                 }else if(checkDrawTime == true){
+                     checkDrawTime = false;
+                 }
+             }
         }
-        
-        if(code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
-            downPressed = true;
-            
-        }
-        
-        if(code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
-            leftPressed = true;
-            
-        }
-        
-        if(code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
-            rightPressed = true;
-        }
-        
-        if(code == KeyEvent.VK_SHIFT){
-            shiftPressed = true;
-            System.out.println("Shift");
-        }
-        
-        if(code == KeyEvent.VK_E){
-            actionPressed = true;
-            System.out.println("Action");
-        }
-        
-        if(code == KeyEvent.VK_ENTER){
-            if(gp.gameState == gp.playState){
-                gp.gameState = gp.pauseState;
-            }else if(gp.gameState == gp.pauseState){
-                gp.gameState = gp.playState;
+        // changes the game state to play by pressing p     
+        if (gp.gameState == gp.pauseState){
+
+            if(code == KeyEvent.VK_P){
+
+                    gp.gameState = gp.playState;
             }
-            
         }
-        
-        //DEBUG 
-        if(code == KeyEvent.VK_T){
-            if(checkDrawTime == false){
-                checkDrawTime = true;
-            }else if(checkDrawTime == true){
-                checkDrawTime = false;
+        // changes the game state to play by pressing enter
+        if (gp.gameState == gp.dialogueState){
+
+            if(code == KeyEvent.VK_ENTER){
+
+                    gp.gameState = gp.playState;
             }
-        }
-       }
-    // changes the game state to play by pressing p     
-    if (gp.gameState == gp.pauseState){
-    
-        if(code == KeyEvent.VK_P){
-            
-                gp.gameState = gp.playState;
         }
     }
-    // changes the game state to play by pressing enter
-    if (gp.gameState == gp.dialogueState){
-    
-        if(code == KeyEvent.VK_ENTER){
-            
-                gp.gameState = gp.playState;
-        }
-    }
-   }
     
 
     @Override

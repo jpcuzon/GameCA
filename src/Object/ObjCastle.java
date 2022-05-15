@@ -21,7 +21,7 @@ public class ObjCastle extends Object {
         name = "Castle";       
         try{
         
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/Castle.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/objects/Obj_Castle.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -39,8 +39,6 @@ public class ObjCastle extends Object {
         size = gp.tileSize *5;
         solidArea.x = solidArea.x *5;
         solidArea.y = solidArea.y *5;
-        //sets the solid area to the size of the image
-        //for some reason I coulnot set it dinamicly
         solidArea.height = 400;
         solidArea.width = 400 ;
 

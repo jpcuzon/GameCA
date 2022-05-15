@@ -7,7 +7,6 @@ package tile;
 import gameca.GamePanel;
 import gameca.UtilityTool;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +41,6 @@ public class TileManager {
     
     public void getTileImage(){
         
-//        setTile(0, "Background_Wall", true);
         setTile(1, "Background_Water_Left", true);
         setTile(2, "Background_Water_CornerL", true);
         setTile(3, "Background_Water_Top", true);
@@ -63,7 +61,7 @@ public class TileManager {
 
     }
     
-    //loads the image of a tile to the tile array
+    //loads the image of a tile to the tile array, we made this method to remove redundancy on our code as these lines will be used a lot for fetching tile images
     public void setTile(int tileIndex, String tileData, boolean collision){
         
         UtilityTool uTool = new UtilityTool();
@@ -122,51 +120,10 @@ public class TileManager {
         
     }
     
-    // loads a map data from a text file
-//    public void loadWorldMap(String mapData){
-//        
-//        try{
-//            
-//            InputStream is = getClass().getResourceAsStream(mapData);
-//            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-//            
-//            int col = 0;
-//            int row = 0;
-//            
-//            while(col < gp.maxWorldCol && row < gp.maxWorldRow){
-//                
-//                String line = br.readLine();
-//                
-//                while(col < gp.maxWorldCol){
-//                    String numbers[] = line.split(" ");
-//                    
-//                    int num = Integer.parseInt(numbers[col]);
-//                    
-//                    mapTileNum[col][row] = num;
-//                    col++;
-//                }
-//                if(col == gp.maxWorldCol){
-//                    col = 0;
-//                    row++;
-//                }
-//                
-//                
-//            }
-//            br.close();
-//            
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-//        
-//        
-//    }
-    
     public void draw(Graphics2D g2){
 
         int worldCol = 0;
         int worldRow = 0;
-//        int x = 0;
-       //      int y = 0;
         
         while(worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow){
             
@@ -177,15 +134,7 @@ public class TileManager {
             int screenX = worldX - gp.player.worldX + gp.player.screenX;
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
             
-            //JP map
-//For performance efficiency; Only draw the map that is on the screen instead of drawing the whole map
-//            if(worldX > (gp.player.worldX)- (gp.player.screenX * 2) && worldX < (gp.player.worldX) + (gp.player.screenX* 15) 
-//                    && worldY > gp.player.worldY - gp.player.screenY && worldY < gp.player.worldY + gp.player.screenY){ 
-//                //since the castle is side-scrolling, we don'y need camera for Y for now
-//                
-//                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-//            }
-//          
+ 
 
             //Stops the camera from moving when at the edge
             if(gp.player.screenX > gp.player.worldX){
@@ -212,7 +161,6 @@ public class TileManager {
                     worldX - gp.tileSize < (gp.player.worldX) + (gp.player.screenX) && 
                     worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
                     worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){ 
-                //since the castle is side-scrolling, we don'y need camera for Y for now
                 
                 g2.drawImage(tile[tileNum].image, screenX, screenY, null);
             }else if(gp.player.screenX > gp.player.worldX || gp.player.screenY > gp.player.worldY ||
@@ -223,13 +171,10 @@ public class TileManager {
             
             
             worldCol++;
-//            x += gp.tileSize;
            //when it reaches the end of the row, it changes to the next row 
             if(worldCol == gp.maxWorldCol){
                 worldCol = 0;
-//                x = 0;
                 worldRow++;
-//                y += gp.tileSize;
             }
             
         }

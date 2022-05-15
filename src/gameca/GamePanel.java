@@ -31,15 +31,10 @@ public class GamePanel extends JPanel implements Runnable{
     
     public final int tileSize = originalTileSize * scale; //48x48
     public final int maxScreenCol = 16;
-    public final int maxScreenRow = (maxScreenCol * 9)/16;
-    public final int screenWidth = tileSize * maxScreenCol;  //1536 pixels
-    public final int screenHeight = tileSize * maxScreenRow; //864 pixels
-    
-//    //World Settings
-//    public final int maxWorldCol = 96;  //number of columns in the map tile
-//    public final int maxWorldRow = 9;
-//    public final int worldWidth = tileSize * maxWorldCol;
-//    public final int worldHeight = tileSize* maxWorldRow;
+    public final int maxScreenRow = 9;
+    public final int screenWidth = tileSize * maxScreenCol;  //1280 pixels
+    public final int screenHeight = tileSize * maxScreenRow; //72 pixels
+
     
     //World Settings
     public final int maxWorldCol = 50;  //number of columns in the map tile
@@ -48,8 +43,6 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldHeight = tileSize*maxWorldRow;
     public final int maxMap = 2;
     public int currentMap = 0;
-//    public final int worldWidth = tileSize * maxWorldCol;
-//    public final int worldHeight = tileSize* maxWorldRow;
     
     
     //FPS
@@ -92,8 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
         
     }
     
-    
-
+    //Starts the thread
     public void startGameThread(){
         
         gameThread = new Thread(this);
@@ -101,13 +93,12 @@ public class GamePanel extends JPanel implements Runnable{
         
     }
     
+    
     public void setGame(){
     
-        
         aManager.setObj();
         gameState = playState;
         
-//        playMusic(0);
     }
     
     
@@ -115,6 +106,7 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
 //    ===== SLEEPER GAME LOOP METHOD ==========
 //    ==Some says sleeper method is not as accurate
+//    ==We didn't delete this part as we want to show the difference between the two game loop method
 //    public void run() {
 //        
 //        //Game Loop; Core of games
@@ -154,6 +146,8 @@ public class GamePanel extends JPanel implements Runnable{
 //        
 //    
 //    }
+    
+    
     // ============= Delta Game Loop Method =================
     
     public void run(){
@@ -210,8 +204,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void update(){
         
-//        candle.update();
-
+        
         if(gameState == playState){
             wise.update();
             player.update();
@@ -235,6 +228,7 @@ public class GamePanel extends JPanel implements Runnable{
         
     }
     
+    //Draws the components
     public void paintComponent(Graphics g){
         
         super.paintComponent(g);
@@ -249,7 +243,6 @@ public class GamePanel extends JPanel implements Runnable{
         
        //draws tile 
         tileManager.draw(g2);
-//        candle.draw(g2, tileSize*2,tileSize*5);
 
         //draws object
         for(int i = 0; i <object[1].length; i ++){
@@ -303,16 +296,7 @@ public class GamePanel extends JPanel implements Runnable{
         soundEffect.setFile(i);
         soundEffect.play();
     }
-    
-    //I moved them to the assetmanager
-//    public void setObject(){
-//        
-//        //castle
-//        object[0] = new ObjCastle();
-//        object[0].worldX = (13/2) * tileSize;
-//        object[0].worldY = 3 * tileSize;
-//        
-//    }
+  
     
     
     

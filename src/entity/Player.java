@@ -6,7 +6,6 @@ package entity;
 
 import gameca.GamePanel;
 import gameca.KeyHandler;
-import gameca.UtilityTool;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -133,18 +132,10 @@ public class Player extends Entity{
                         
                 }
             }
-            
-           //Clamp
            
-//            worldX = gp.clamp(worldX, 0, gp.screenWidth - (gp.tileSize*2));
-           // worldX = gp.clamp(worldX, gp.tileSize, gp.worldWidth);
-//            y = gp.clamp(y, gp.screenHeight - (gp.tileSize*3), gp.screenHeight - (gp.tileSize*2));
-           // worldY = gp.clamp(worldY, gp.screenHeight - (gp.tileSize*3), gp.screenHeight - (gp.tileSize*2));
-
-            
             spriteCounter++;
             
-            //checks if shift is pressed and doubles the animation speed if true
+            //checks if shift is pressed and doubles the animation speed and rate of sound effect playback if true
             if(keyHandler.shiftPressed == true){
                 imageUpdateSpeed = 5;
             }else{
@@ -233,9 +224,7 @@ public class Player extends Entity{
             gp.gameState = gp.dialogueState;
             gp.wise.speak();
         }
-        
-        
-        
+       
         
     }
     

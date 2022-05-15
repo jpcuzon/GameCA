@@ -33,7 +33,7 @@ public class Entity {
     public boolean collisionOn = false;
     public boolean action = false;
     
-    //method to fetch and save the image, we put it in the super class (Entity) so other subclass can use it without typing ti again
+    //method to fetch and save the image, we put it in the super class (Entity) so other subclass can use it without typing it again
     public BufferedImage setup(String imagePath){
         
         UtilityTool uTool = new UtilityTool();

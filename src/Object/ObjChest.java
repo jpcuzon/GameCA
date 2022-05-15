@@ -28,21 +28,5 @@ public class ObjChest extends Object{
         collision = true;
         
     }
-    
-//    @Override
-//    //changes the way this object is drawn to the screen
-//    public void Draw(GamePanel gp, Graphics2D g2) {
-//        
-//            screenX = worldX - gp.player.worldX + gp.player.screenX;
-//            screenY = worldY - gp.player.worldY + gp.player.screenY;
-//            size = gp.tileSize;
-//            
-//            
-//         
-//            //draws to the map
-//                
-//                g2.drawImage(image, screenX, screenY, size, size, null);
-//                
-//           
-//            }
+
 }
