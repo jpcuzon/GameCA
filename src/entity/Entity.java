@@ -4,8 +4,12 @@
  */
 package entity;
 
+import gameca.GamePanel;
+import gameca.UtilityTool;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -13,6 +17,7 @@ import java.awt.image.BufferedImage;
  */
 public class Entity {
     
+    GamePanel gp; 
     public int worldX, worldY;
     public int speed;
     
@@ -23,12 +28,37 @@ public class Entity {
     
     public int spriteCounter = 0;
     public int spriteNum = 1;
-    public Rectangle solidArea;
+    public Rectangle solidArea = new Rectangle(0, 0, 80, 80);
     public int solidAreaDefX, solidAreaDefY;
     public boolean collisionOn = false;
     public boolean action = false;
     
+    //method to fetch and save the image, we put it in the super class (Entity) so other subclass can use it without typing ti again
+    public BufferedImage setup(String imagePath){
+        
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+        
+        try{
+            
+            image = ImageIO.read(getClass().getResourceAsStream(imagePath+".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+        return image;
+    }
+    
+    
+    
     public int getKey() {
         return key;
+    }
+    
+    public Entity(GamePanel gp){
+        
+        this.gp = gp;
     }
 }

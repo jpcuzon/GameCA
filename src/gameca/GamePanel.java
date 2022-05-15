@@ -8,6 +8,7 @@ package gameca;
 //import entity.MiscCandle;
 import Object.ObjCastle;
 import Object.Object;
+import entity.Entity;
 import entity.NPCWise;
 import entity.Player;
 import java.awt.Color;
@@ -43,6 +44,10 @@ public class GamePanel extends JPanel implements Runnable{
     //World Settings
     public final int maxWorldCol = 50;  //number of columns in the map tile
     public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize*maxWorldCol;
+    public final int worldHeight = tileSize*maxWorldRow;
+    public final int maxMap = 2;
+    public int currentMap = 0;
 //    public final int worldWidth = tileSize * maxWorldCol;
 //    public final int worldHeight = tileSize* maxWorldRow;
     
@@ -52,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable{
     
     //System
     TileManager tileManager = new TileManager(this);
-    KeyHandler keyHandler = new KeyHandler();
+    KeyHandler keyHandler = new KeyHandler(this);
     Sound soundEffect = new Sound();
     Sound music = new Sound();
     public CollisionCheck cCheck = new CollisionCheck(this);
@@ -63,11 +68,14 @@ public class GamePanel extends JPanel implements Runnable{
     //Entities and Objects
     public Player player = new Player(this, keyHandler);
     public NPCWise wise = new NPCWise(this);
-    
-    public Object object[]= new Object[10] ;  //array to store as many as 10 objects to be shown at a time
-    
+    public Object object[][]= new Object[maxMap][10] ;  //array to store as many as 10 objects to be shown at a time
     
     
+    
+    //Game State
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
     
     
     
@@ -94,8 +102,9 @@ public class GamePanel extends JPanel implements Runnable{
     
     public void setGame(){
     
-//        setObject();
+        
         aManager.setObj();
+        gameState = playState;
         
 //        playMusic(0);
     }
@@ -201,8 +210,17 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         
 //        candle.update();
-        wise.update();
-         player.update();
+
+        if(gameState == playState){
+            wise.update();
+            player.update();
+            
+        }
+        if(gameState == pauseState){
+            //nothing
+            
+        }
+        
     }
     
     //sets the bound limits of the object based on the screen size
@@ -219,21 +237,25 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent(Graphics g){
         
         super.paintComponent(g);
-        
         Graphics2D g2 = (Graphics2D)g;
+        
+        //Debug mode
+        long drawStart = 0;
+        if(keyHandler.checkDrawTime == true){
+            drawStart = System.nanoTime();
+        }
+        
+        
        //draws tile 
         tileManager.draw(g2);
 //        candle.draw(g2, tileSize*2,tileSize*5);
-//        candle.draw(g2, tileSize*6,tileSize*5);
-//        candle.draw(g2, tileSize*10,tileSize*5);
-//        candle.draw(g2, tileSize*14,tileSize*5);
 
         //draws object
-        for(int i = 0; i <object.length; i ++){
+        for(int i = 0; i <object[1].length; i ++){
         //checks if the array is not empty before drawing
-            if (object[i] != null){
+            if (object[currentMap][i] != null){
                 //draws the object
-                object[i].Draw(this, g2);
+                object[currentMap][i].Draw(this, g2);
             }
         }
         
@@ -248,6 +270,16 @@ public class GamePanel extends JPanel implements Runnable{
         
         //UI
         ui.draw(g2);
+        
+        //Debug
+        if(keyHandler.checkDrawTime == true){
+            long drawEnd = System.nanoTime();
+            long passed = drawEnd - drawStart;
+            g2.setColor(Color.white);
+            g2.drawString("Draw Time: " + passed, 10, 400);
+            System.out.println("Draw Time: " + passed);
+        }
+        
         
         g2.dispose(); //release any resources that this is using
         

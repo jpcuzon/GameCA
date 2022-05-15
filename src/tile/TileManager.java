@@ -5,7 +5,9 @@
 package tile;
 
 import gameca.GamePanel;
+import gameca.UtilityTool;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +23,7 @@ public class TileManager {
     private GamePanel gp;
     private Tile[] tile;
     private Tile[] miscTile;
-    private int mapTileNum[][];
+    private int mapTileNum[][][];
     
     
     public TileManager(GamePanel gp){
@@ -29,93 +31,89 @@ public class TileManager {
         
         tile = new Tile[20];
         miscTile = new Tile[5];
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         
         getTileImage();
-//        loadMap("/maps/Map_Castle_01.txt"); //puts the location of file in the method call instead of hardcoding it inside the method for easy map access
-        loadMap("/maps/WorldMap.txt"); //puts the location of file in the method call instead of hardcoding it inside the method for easy map access
+        loadMap("/maps/WorldMap.txt", 0); //puts the location of file in the method call instead of hardcoding it inside the method for easy map access
+        loadMap("/maps/map01.txt", 1);
 
     }
     
+    
     public void getTileImage(){
         
+//        setTile(0, "Background_Wall", true);
+        setTile(1, "Background_Water_Left", true);
+        setTile(2, "Background_Water_CornerL", true);
+        setTile(3, "Background_Water_Top", true);
+        setTile(4, "Background_Water_CornerR", true);
+        setTile(5, "Background_Water_Right", true);
+        setTile(6, "Background_Water", true);
+        setTile(7, "Background_Tree", true);
+        setTile(8, "Background_Dirt", false);
+        setTile(9, "Background_Grass", false);
+        setTile(10, "Background_Bridge", false);
+        setTile(11, "Background_Wall", true);
+        setTile(12, "Background_WallsideL", true);
+        setTile(13, "Background_WallUpCornerL", true);
+        setTile(14, "Background_WallUpCornerR", true);
+        setTile(15, "Background_WallSideR", true);
+        setTile(16, "Background_WallDownCornerL", true);
+        setTile(17, "Background_WallDownCornerR", true);
+
+    }
+    
+    //loads the image of a tile to the tile array
+    public void setTile(int tileIndex, String tileData, boolean collision){
+        
+        UtilityTool uTool = new UtilityTool();
+        
         try{
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Wall.png"));
-            tile[0].collision = true;
+            tile[tileIndex] = new Tile();
+            tile[tileIndex].image = ImageIO.read(getClass().getResourceAsStream("/tiles/"+ tileData +".png"));
+            tile[tileIndex].image = uTool.scaleImage(tile[tileIndex].image, gp.tileSize, gp.tileSize);
+            tile[tileIndex].collision = collision;
             
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_Left.png"));
-            tile[1].collision = true;
             
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_CornerL.png"));
-            tile[2].collision = true;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+    }
+  
+    
+    // loads a map data from a text file
+    public void loadMap(String mapData, int map){
+        
+        try{
             
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_Top.png"));
-            tile[3].collision = true;
+            InputStream is = getClass().getResourceAsStream(mapData);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
             
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_CornerR.png"));
-            tile[4].collision = true;
-
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Water_Right.png"));
-            tile[5].collision = true;
- 
-            tile[6] = new Tile();
-            tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water.png"));
-            tile[6].collision = true;
+            int col = 0;
+            int row = 0;
             
-            tile[7] = new Tile();
-            tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_Tree.png"));
-            tile[7].collision = true;
-            
-            tile[8] = new Tile();
-            tile[8].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
-
-            tile[9] = new Tile();
-            tile[9].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
-            
-            tile[10] = new Tile();
-            tile[10].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
-            
-            tile[11] = new Tile();
-            tile[11].image = ImageIO.read(getClass().getResourceAsStream("/tiles/bridge.png"));
-            
-            tile[12] = new Tile();
-            tile[12].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_WallsideL.png"));
-            tile[12].collision = true;
-            
-            tile[13] = new Tile();
-            tile[13].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_WallUpCornerL.png"));
-            tile[13].collision = true;
-            
-            tile[14] = new Tile();
-            tile[14].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_WallUpCornerR.png"));
-            tile[14].collision = true;
-            
-            tile[15] = new Tile();
-            tile[15].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_WallSideR.png"));
-            tile[15].collision = true;
-            
-            tile[16] = new Tile();
-            tile[16].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_WallDownCornerL.png"));
-            tile[16].collision = true;
-            
-            tile[17] = new Tile();
-            tile[17].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Background_WallDownCornerR.png"));
-            tile[17].collision = true;
-            
-//            miscT5le[0] = new Tile(); //for a null tile
-//            miscTile[0].image = ImageIO.read(getClass().getResourceAsStream("/misc/Misc_Null.png"));
-//            
-//            miscTile[1] = new Tile();
-//            miscTile[1].image = ImageIO.read(getClass().getResourceAsStream("/misc/Misc_Candle_1.png"));
-//            miscTile[2] = new Tile();
-//            miscTile[2].image = ImageIO.read(getClass().getResourceAsStream("/misc/Misc_Candle_2.png"));
-            
+            while(col < gp.maxWorldCol && row < gp.maxWorldRow){
+                
+                String line = br.readLine();
+                
+                while(col < gp.maxWorldCol){
+                    String numbers[] = line.split(" ");
+                    
+                    
+                    int num = Integer.parseInt(numbers[col]);
+                    
+                    mapTileNum[map][col][row] = num;
+                    col++;
+                }
+                if(col == gp.maxWorldCol){
+                    col = 0;
+                    row++;
+                }
+                
+                
+            }
+            br.close();
             
         }catch(IOException e){
             e.printStackTrace();
@@ -123,100 +121,45 @@ public class TileManager {
         
         
     }
-//    
-//    public void setupTile(int index, String tile, boolean collision){
+    
+    // loads a map data from a text file
+//    public void loadWorldMap(String mapData){
 //        
 //        try{
-//            tile[index] = new Tile();
-//            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/"+tile+".png"));
-//            tile[index].collision = collision;
 //            
+//            InputStream is = getClass().getResourceAsStream(mapData);
+//            BufferedReader br = new BufferedReader(new InputStreamReader(is));
 //            
+//            int col = 0;
+//            int row = 0;
+//            
+//            while(col < gp.maxWorldCol && row < gp.maxWorldRow){
+//                
+//                String line = br.readLine();
+//                
+//                while(col < gp.maxWorldCol){
+//                    String numbers[] = line.split(" ");
+//                    
+//                    int num = Integer.parseInt(numbers[col]);
+//                    
+//                    mapTileNum[col][row] = num;
+//                    col++;
+//                }
+//                if(col == gp.maxWorldCol){
+//                    col = 0;
+//                    row++;
+//                }
+//                
+//                
+//            }
+//            br.close();
 //            
 //        }catch(IOException e){
 //            e.printStackTrace();
 //        }
 //        
+//        
 //    }
-    
-    // loads a map data from a text file
-    public void loadMap(String mapData){
-        
-        try{
-            
-            InputStream is = getClass().getResourceAsStream(mapData);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            
-            int col = 0;
-            int row = 0;
-            
-            while(col < gp.maxWorldCol && row < gp.maxWorldRow){
-                
-                String line = br.readLine();
-                
-                while(col < gp.maxWorldCol){
-                    String numbers[] = line.split(" ");
-                    
-                    
-                    int num = Integer.parseInt(numbers[col]);
-                    
-                    mapTileNum[col][row] = num;
-                    col++;
-                }
-                if(col == gp.maxWorldCol){
-                    col = 0;
-                    row++;
-                }
-                
-                
-            }
-            br.close();
-            
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        
-        
-    }
-    
-    // loads a map data from a text file
-    public void loadWorldMap(String mapData){
-        
-        try{
-            
-            InputStream is = getClass().getResourceAsStream(mapData);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            
-            int col = 0;
-            int row = 0;
-            
-            while(col < gp.maxWorldCol && row < gp.maxWorldRow){
-                
-                String line = br.readLine();
-                
-                while(col < gp.maxWorldCol){
-                    String numbers[] = line.split(" ");
-                    
-                    int num = Integer.parseInt(numbers[col]);
-                    
-                    mapTileNum[col][row] = num;
-                    col++;
-                }
-                if(col == gp.maxWorldCol){
-                    col = 0;
-                    row++;
-                }
-                
-                
-            }
-            br.close();
-            
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        
-        
-    }
     
     public void draw(Graphics2D g2){
 
@@ -227,7 +170,7 @@ public class TileManager {
         
         while(worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow){
             
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
              
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;
@@ -244,6 +187,24 @@ public class TileManager {
 //            }
 //          
 
+            //Stops the camera from moving when at the edge
+            if(gp.player.screenX > gp.player.worldX){
+                screenX = worldX;
+            }
+            if(gp.player.screenY > gp.player.worldY){
+                
+                screenY = worldY;
+            }
+            int rightOffset = gp.screenWidth - gp.player.screenX;
+            if(rightOffset>gp.worldWidth - gp.player.worldX){
+                screenX = gp.screenWidth - (gp.worldWidth - worldX);
+                
+            }
+            int bottomOffset = gp.screenHeight - gp.player.screenY;
+            if(bottomOffset>gp.worldHeight - gp.player.worldY){
+                screenY = gp.screenHeight - (gp.worldHeight - worldY);
+                
+            }
 
              //For performance efficiency; Only draw the map that is on the screen instead of drawing the whole map
             if(
@@ -253,7 +214,11 @@ public class TileManager {
                     worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){ 
                 //since the castle is side-scrolling, we don'y need camera for Y for now
                 
-                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
+            }else if(gp.player.screenX > gp.player.worldX || gp.player.screenY > gp.player.worldY ||
+                    rightOffset > (gp.worldWidth - gp.player.worldX) || bottomOffset > (gp.worldHeight - gp.player.worldY)){
+                
+                g2.drawImage(tile[tileNum].image, screenX, screenY, null);
             }
             
             
@@ -296,11 +261,11 @@ public class TileManager {
         this.miscTile = miscTile;
     }
 
-    public int[][] getMapTileNum() {
+    public int[][][] getMapTileNum() {
         return mapTileNum;
     }
 
-    public void setMapTileNum(int[][] mapTileNum) {
+    public void setMapTileNum(int[][][] mapTileNum) {
         this.mapTileNum = mapTileNum;
     }
     
