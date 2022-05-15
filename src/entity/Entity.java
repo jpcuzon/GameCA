@@ -51,7 +51,7 @@ public class Entity {
         return image;
     }
     
-    
+    public void speak(){}
     
     public int getKey() {
         return key;
