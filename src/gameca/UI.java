@@ -21,7 +21,7 @@ public class UI {
     Font lato_40;
     BufferedImage keyImage;
     public boolean messageOn = false;
-    public String message = "";
+    public String message, currentDialogue = "";
     public int messageCount = 0;
     boolean gameEnd = false;
     
@@ -47,13 +47,15 @@ public class UI {
         g2.setFont(lato_40);
         g2.setColor(Color.white);
         
+      
         if(gameEnd == true){
             
             drawTBCScreen();
             
         }else{
 
-            if(gp.gameState == gp.playState){
+        //play state
+        if(gp.gameState == gp.playState){
                 
                 g2.drawImage(keyImage, 20, 15, 48 ,48, null);
                 g2.drawString("x " + gp.player.getKey(), 60, 50);
@@ -65,19 +67,50 @@ public class UI {
                 }
                 
             }
-            
+            //pause state
             if(gp.gameState == gp.pauseState){
                     
                 drawPauseScreen();
 
             }
-            
+            // Dialogue
+            if(gp.gameState == gp.dialogueState ){
+                    
+                drawDialogueScreen();
+
+            }
             
         }
         
         
     }
     
+    public void drawDialogueScreen(){
+    
+        int x = 52;
+        int y = gp.tileSize/2;
+        int width = gp.screenWidth - (gp.tileSize*4);
+        int  height = gp.tileSize *2;
+       
+       
+        drawDialogue(x, y, height, width);
+        
+         //displays the text inside the window
+        y+= gp.tileSize;
+        x+= gp.tileSize;
+        g2.setColor(Color.white);
+        g2.drawString(currentDialogue,x,y);
+                
+    }
+    
+    public void drawDialogue(int x, int y, int height,int width){
+        
+        // sets the colour and opacity as well as the roundness of the rectangule
+        Color c = new Color(0,0,0,150);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 30, 30);
+    
+    }
     public void drawMessage(String message){
         
         int messageLength = getXCenter(message);

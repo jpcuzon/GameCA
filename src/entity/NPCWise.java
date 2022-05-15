@@ -34,7 +34,11 @@ public final class NPCWise extends Entity{
         getImage();
         
     }
+    // text to be displayed whenever the player hits the NPC
+    public void speak(){
     
+        gp.ui.currentDialogue = "Get a Key from a chest in order to open the gate";
+    }
     public void getImage(){
         
         try{

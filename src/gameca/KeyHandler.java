@@ -36,6 +36,8 @@ public class KeyHandler implements KeyListener{
         
         int code = e.getExtendedKeyCode();
         
+       //if in play state
+       if(gp.gameState == gp.playState){ 
         if(code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
             upPressed = true;
             
@@ -82,9 +84,25 @@ public class KeyHandler implements KeyListener{
                 checkDrawTime = false;
             }
         }
-
+       }
+    // changes the game state to play by pressing p     
+    if (gp.gameState == gp.pauseState){
     
+        if(code == KeyEvent.VK_P){
+            
+                gp.gameState = gp.playState;
+        }
     }
+    // changes the game state to play by pressing enter
+    if (gp.gameState == gp.dialogueState){
+    
+        if(code == KeyEvent.VK_ENTER){
+            
+                gp.gameState = gp.playState;
+        }
+    }
+   }
+    
 
     @Override
     public void keyReleased(KeyEvent e) {
